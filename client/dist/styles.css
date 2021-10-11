@@ -1,0 +1,79 @@
+
+
+
+/* 
+Selection Main Box
+*/
+
+.center {
+    text-align: center;
+}
+.top-spacing {
+  text-align: center;
+  margin-top: 130px;
+}
+
+/* 
+Start Screen Drop Boxes 
+*/
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    width: 150px;
+    height: 42px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+
+    margin-top:20px;
+    flex-direction: column
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+
+
+  /* 
+Show Hide Boxes
+*/
+
+.show {
+
+    margin-left: 5vw;
+    margin-top: 9px;
+}
+.showname {
+  text-align: center;
+    margin-bottom: 30px;
+}
+.hide {
+    display: none
+}
