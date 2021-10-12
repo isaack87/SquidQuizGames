@@ -15,3 +15,17 @@ class StartPage extends React.Component {
 }
 
 export default StartPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
