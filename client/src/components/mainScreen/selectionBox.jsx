@@ -8,10 +8,11 @@ class SelectionBox extends React.Component {
         this.state = {
             playerName: "isaac",
             difficulty: "easy",
-            genre: "sports",
+            genreID: "",
+            genre: "",
             choice: "Pick a Selection",
             difficultySelected: true,
-            genreSelected: true,
+            genreSelected: false,
             playerPicked: true
         }
         this.handleChange = this.handleChange.bind(this);
@@ -32,8 +33,17 @@ class SelectionBox extends React.Component {
             })
         }
         onChangeGenre(e) {
+            let genrePicked;
+            if (e === 27) {
+                genrePicked = 'Animals'
+            } else if (e === 21) {
+                genrePicked = 'Sports'
+            } else {
+                genrePicked = 'History'
+            }
             this.setState({
-                genre: e,
+                genreID: e,
+                genre: genrePicked,
                 genreSelected: true,
                 choice: ""
             })
@@ -43,7 +53,6 @@ class SelectionBox extends React.Component {
           }
         handleSubmit(e) {
             e.preventDefault();
-
             this.setState({playerName: e.target.value, playerPicked: true});
         }
 
@@ -66,9 +75,10 @@ class SelectionBox extends React.Component {
         <div className="dropdown">
             <button className="dropbtn">{this.state.choice} {this.state.genre}</button>
             <div className="dropdown-content">
-            <a href="#" onClick={this.onChangeGenre.bind(this, 'Arts')}>Arts</a>
-            <a href="#" onClick={this.onChangeGenre.bind(this, 'Sports')}>Sports</a>
-            <a href="#" onClick={this.onChangeGenre.bind(this, 'History')}>History</a>
+            {/* numbers in function correlate to api category numbers */}
+            <a href="#" onClick={this.onChangeGenre.bind(this, 27)}>Animals</a>
+            <a href="#" onClick={this.onChangeGenre.bind(this, 21)}>Sports</a>
+            <a href="#" onClick={this.onChangeGenre.bind(this, 23)}>History</a>
             </div>
             <div className={this.state.difficultySelected === true ? 'show' : 'hide' }>You have Selected genre {this.state.genre} </div>
         </div>
@@ -77,9 +87,9 @@ class SelectionBox extends React.Component {
         <div className="dropdown">
             <button className="dropbtn">{this.state.choice} {this.state.difficulty}</button>
             <div className="dropdown-content">
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'Easy')}>Easy</a>
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'Medium')}>Medium</a>
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'Hard')}>Hard</a>
+            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'easy')}>Easy</a>
+            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'medium')}>Medium</a>
+            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'hard')}>Hard</a>
             </div>
             <div className={this.state.genreSelected === true ? 'show' : 'hide' }>You have Selected {this.state.difficulty} difficulty</div>
         </div> 
@@ -91,7 +101,8 @@ class SelectionBox extends React.Component {
                 state: {
                     playerName: this.state.playerName,
                     difficulty: this.state.difficulty,
-                    genre: this.state.genre
+                    genre: this.state.genre,
+                    genreID: this.state.genreID
                   }
             }
         }
