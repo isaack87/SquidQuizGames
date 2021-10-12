@@ -1,24 +1,25 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 
 
 class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "",
-            difficulty: "",
-            genre: "",
+            playerName: "isaac",
+            difficulty: "easy",
+            genre: "sports",
             choice: "Pick a Selection",
-            difficultySelected: false,
-            genreSelected: false,
-            playerPicked: false
+            difficultySelected: true,
+            genreSelected: true,
+            playerPicked: true
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeGenre = this.onChangeGenre.bind(this)
-    }
+    }   
 
-        onChangePlayerName(e) {
+         onChangePlayerName(e) {
             this.setState({
                 playerName: e
             })
@@ -42,6 +43,7 @@ class SelectionBox extends React.Component {
           }
         handleSubmit(e) {
             e.preventDefault();
+
             this.setState({playerName: e.target.value, playerPicked: true});
         }
 
@@ -80,9 +82,24 @@ class SelectionBox extends React.Component {
             <a href="#" onClick={this.onChangeDifficulty.bind(this, 'Hard')}>Hard</a>
             </div>
             <div className={this.state.genreSelected === true ? 'show' : 'hide' }>You have Selected {this.state.difficulty} difficulty</div>
-        </div>
+        </div> 
 
-        <button className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked ? 'top-spacing' : 'hide' }>Click to Enter Game {this.state.playerName} </button>
+        <Link 
+        to={
+            { 
+                pathname: "/game",
+                state: {
+                    playerName: this.state.playerName,
+                    difficulty: this.state.difficulty,
+                    genre: this.state.genre
+                  }
+            }
+        }
+
+        className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked ? 'top-spacing' : 'hide' } 
+        >Click to Enter Game {this.state.playerName} 
+        </Link>
+
         </div>
         );
     }

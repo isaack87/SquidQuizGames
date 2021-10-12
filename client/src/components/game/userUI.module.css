@@ -1,0 +1,21 @@
+
+
+.topbar {
+    display: flex;
+    margin: auto;
+    margin-top: 40px;
+    box-sizing: content-box;
+    width: 90%;
+    border: solid #5B6DCD 1px;
+    padding: 5px;
+    color: red
+}
+
+.left {
+    margin-right: auto;
+    text-align: center;
+  }
+.right {
+  margin-left: auto;
+  text-align: center;
+}
