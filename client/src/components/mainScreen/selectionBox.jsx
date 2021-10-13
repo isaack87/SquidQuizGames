@@ -6,19 +6,22 @@ class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "isaac",
-            difficulty: "easy",
+            playerName: "",
+            difficulty: "",
+            rounds: "",
             genreID: "",
             genre: "",
             choice: "Pick a Selection",
-            difficultySelected: true,
+            difficultySelected: false,
+            roundsSelected: false,
             genreSelected: false,
-            playerPicked: true
+            playerPicked: false,
+            hover: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeGenre = this.onChangeGenre.bind(this)
-    }   
+    }
 
          onChangePlayerName(e) {
             this.setState({
@@ -29,6 +32,13 @@ class SelectionBox extends React.Component {
             this.setState({
                 difficulty: e,
                 difficultySelected: true,
+                choice: ""
+            })
+        }
+        onChangeRounds(e) {
+            this.setState({
+                rounds: e,
+                roundsSelected: true,
                 choice: ""
             })
         }
@@ -59,44 +69,48 @@ class SelectionBox extends React.Component {
     render () {
         return (
         <div className="center">
-        <h1> Welcome to the Quiz Games! </h1>
+        <h1 className="title"> Welcome to the Quiz Games! </h1>
 
            <div className={this.state.playerPicked === true ?  'showName' : 'hide' }> Welcome Player {this.state.playerName}!</div>
         <div className={this.state.playerPicked === true ? 'hide' : 'showname' }>
-        <form> 
-        <label>
-        Enter Name:
-        <input type="text" onChange={this.handleChange}/>
-        </label>
+        <form>
+        <input type="text" className="form-control barlength" placeholder="Enter Name Here .." onChange={this.handleChange}/>
         <button value={this.state.playerName} onClick={this.handleSubmit}> lock in name </button>
         </form>
          </div>
 
-        <div className="dropdown">
-            <button className="dropbtn">{this.state.choice} {this.state.genre}</button>
-            <div className="dropdown-content">
-            {/* numbers in function correlate to api category numbers */}
-            <a href="#" onClick={this.onChangeGenre.bind(this, 27)}>Animals</a>
-            <a href="#" onClick={this.onChangeGenre.bind(this, 21)}>Sports</a>
-            <a href="#" onClick={this.onChangeGenre.bind(this, 23)}>History</a>
-            </div>
-            <div className={this.state.difficultySelected === true ? 'show' : 'hide' }>You have Selected genre {this.state.genre} </div>
-        </div>
+    <div id="menu">
+        <ul>
 
-       
-        <div className="dropdown">
-            <button className="dropbtn">{this.state.choice} {this.state.difficulty}</button>
-            <div className="dropdown-content">
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'easy')}>Easy</a>
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'medium')}>Medium</a>
-            <a href="#" onClick={this.onChangeDifficulty.bind(this, 'hard')}>Hard</a>
-            </div>
-            <div className={this.state.genreSelected === true ? 'show' : 'hide' }>You have Selected {this.state.difficulty} difficulty</div>
-        </div> 
 
-        <Link 
+        <li><a href="#"><div id={this.state.genreSelected === true ? ['c-selected'] : ['icon-top'] } class="icon-chrome1"></div> <div class="title-top">Category</div></a>
+            <ul>
+                <li><a href="#" onClick={this.onChangeGenre.bind(this, 27)}><div id="icon" class="icon-pie"></div> <div class="title">Animals</div></a></li>
+                <li><a href="#" onClick={this.onChangeGenre.bind(this, 21)}><div id="icon" class="icon-pie"></div> <div class="title">Sports</div></a></li>
+                <li><a href="#" onClick={this.onChangeGenre.bind(this, 23)}><div id="icon" class="icon-pie"></div> <div class="title">History</div></a></li>
+            </ul>
+        </li>
+
+        <li><a href="#"><div id={this.state.difficultySelected === true ? ['c-selected'] : ['icon-top'] } class="icon-chrome2"></div> <div class="title-top">Difficulty</div></a>
+            <ul>
+                <li><a href="#" onClick={this.onChangeDifficulty.bind(this, 'easy')}><div id="icon" class="icon-pie"></div> <div class="title">Easy</div></a></li>
+                <li><a href="#" onClick={this.onChangeDifficulty.bind(this, 'medium')}><div id="icon" class="icon-pie"></div> <div class="title">Medium</div></a></li>
+                <li><a href="#" onClick={this.onChangeDifficulty.bind(this, 'hard')}><div id="icon" class="icon-pie"></div> <div class="title">Hard</div></a></li>
+            </ul>
+        </li>
+
+        <li><a href="#"><div id={this.state.roundsSelected === true ? ['c-selected'] : ['icon-top'] } class="icon-chrome3"></div> <div class="title-top">Rounds</div></a>
+            <ul>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '5')}><div id="icon" class="icon-pie"></div> <div class="title">5 Rounds</div></a></li>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '10')}><div id="icon" class="icon-pie"></div> <div class="title">10 Rounds</div></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+        <Link
         to={
-            { 
+            {
                 pathname: "/game",
                 state: {
                     playerName: this.state.playerName,
@@ -107,8 +121,8 @@ class SelectionBox extends React.Component {
             }
         }
 
-        className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked ? 'top-spacing' : 'hide' } 
-        >Click to Enter Game {this.state.playerName} 
+        className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked ? 'top-spacing' : 'hide' }
+        >Click to Enter Game {this.state.playerName}
         </Link>
 
         </div>

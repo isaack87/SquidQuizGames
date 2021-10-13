@@ -1,13 +1,23 @@
 
 
 
-/* 
+/*
 Selection Main Box
 */
 
 .center {
     text-align: center;
+    margin-top:14%;
 }
+
+.barlength {
+  width: 20%;
+  margin-bottom: 50em;
+  margin: auto;
+
+
+}
+
 .top-spacing {
   text-align: center;
   margin-top: 130px;
@@ -21,8 +31,8 @@ Selection Main Box
   font-size: 16px;
 }
 
-/* 
-Start Screen Drop Boxes 
+/*
+Start Screen Drop Boxes
 */
 
 .dropbtn {
@@ -35,41 +45,44 @@ Start Screen Drop Boxes
     border: none;
     cursor: pointer;
   }
-  
+
   .dropdown {
 
     margin-top:20px;
     flex-direction: column
   }
-  
+
   .dropdown-content {
     display: none;
     position: relative;
     background-color: #f9f9f9;
     min-width: 160px;
+    width: 15%;
+    margin: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-  
+
   .dropdown-content a {
     color: black;
     padding: 12px 16px;
+    width: 90%;
+    margin: auto;
     text-decoration: none;
     display: block;
   }
-  
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
+
+  .dropdown-content a:hover {
+    display: block;
+  }
+
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-  }
 
 
-  /* 
+
+  /*
 Show Hide Boxes
 */
 
@@ -85,3 +98,267 @@ Show Hide Boxes
 .hide {
     display: none
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HTML CSSResult Skip Results Iframe
+EDIT ON
+body {
+  background: #993;
+}
+
+/* Icons */
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.eot');
+  src:url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.woff') format('woff'),
+    url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.ttf') format('truetype'),
+    url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* data attributes for inserting the icons */
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* class per icon */
+.icon-support,
+.icon-download,
+.icon-box-add,
+.icon-screen,
+.icon-power-cord,
+.icon-thumbs-up,
+.icon-users,
+.icon-pie,
+.icon-binoculars,
+.icon-road,
+.icon-question,
+.icon-chrome,
+.icon-firefox,
+.icon-IE,
+.icon-opera,
+.icon-safari {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-support:before {
+  content: "\e03f";
+}
+.icon-download:before {
+  content: "\e060";
+}
+.icon-box-add:before {
+  content: "\01F525";
+}
+.icon-screen:before {
+  content: "\e054";
+}
+.icon-power-cord:before {
+  content: "\e0aa";
+}
+.icon-thumbs-up:before {
+  content: "\e0cc";
+}
+.icon-question:before {
+  content: "\e0ee";
+}
+.icon-users:before {
+  content: "\e1bd";
+}
+.icon-pie:before {
+  content: "\e091";
+}
+.icon-binoculars:before {
+  content: "\e07c";
+}
+.icon-road:before {
+  content: "\e0a6";
+}
+
+/* front page square,triangle, circle */
+.icon-chrome1:before {
+  content: "◯";
+}
+.icon-chrome2:before {
+  content: "▵";
+}
+.icon-chrome3:before {
+  content: "□";
+}
+
+
+.icon-firefox:before {
+  content: "\e1b4";
+}
+.icon-IE:before {
+  content: "\e1b5";
+}
+.icon-opera:before {
+  content: "\e1b6";
+}
+.icon-safari:before {
+  content: "\e1b7";
+}
+/* end */
+
+#menu {
+  margin: 50px 0;
+}
+
+/* first level */
+#menu ul {
+  font-family: 'Nova Round', cursive;
+  margin: 0 auto;
+  padding: 0;
+  display: table;
+}
+#menu ul li {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+    height: 80px;
+  padding: 10px;
+}
+#menu ul li a {
+  color: #000;
+    text-decoration: none;
+  display: block;
+  height: 60px;
+}
+
+/* animation div */
+#menu ul li a div {
+  -webkit-transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -ms-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  transition: all 0.9s ease;
+}
+#menu ul li a div.title-top {
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+}
+#menu ul li a:hover div.title-top {
+  opacity: 1;
+
+  bottom: 50%;
+}
+#menu ul li a div#icon-top {
+  position: absolute;
+  font-size: 62px;
+
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+#c-selected {
+  position: absolute;
+  background-color: red;
+  font-size: 62px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+li a:hover {
+  background-color: white;
+ }
+
+
+
+#menu ul li a:hover div#icon-top {
+  background-color: red;
+  font-size: 22px;
+  opacity: 0;
+}
+#menu ul li a div.title {
+  position: absolute;
+  left: 100%;
+  opacity: 0;
+}
+#menu ul li a:hover div.title {
+  opacity: 1;
+  left: 0;
+  top: 9px;
+}
+#menu ul li a div#icon {
+  position: absolute;
+  font-size: 62px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  left: 0;
+}
+#menu ul li a:hover div#icon {
+    left: 50%;
+}
+
+/* second level */
+#menu ul li ul {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  left: 0;
+  padding-top: 10px;
+  -webkit-transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -ms-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  transition: all 0.9s ease;
+}
+#menu ul li:hover ul {
+    opacity: 1;
+  visibility: visible;
+}
+
+@media only screen and (max-width: 880px),
+only screen and (max-device-width: 880px) {
+  #menu {
+        min-width: 470px;
+    }
+  #menu ul li {
+    width: 70px;
+    height: 40px;
+    }
+  #menu ul li a div#icon-top,
+  #menu ul li a div#icon {
+    font-size: 42px;
+
+  }
+}
+/* google font */
+
+<link href='https://fonts.googleapis.com/css?family=Nova+Round' rel='stylesheet' type='text/css'>
