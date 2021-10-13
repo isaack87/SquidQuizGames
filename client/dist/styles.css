@@ -1,3 +1,9 @@
+input { border-style: none; background: transparent; outline: none; }
+button { padding: 0; background: none; border: none; outline: none; }
+
+
+
+
 
 
 
@@ -5,14 +11,63 @@
 Selection Main Box
 */
 
+
+.startbg {
+  background-image: url('./assets/card1.jpeg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+ .fullscreenbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+ }
+
+  .registerbox {
+
+    margin-top:22%;
+    text-align: center;
+  }
+
 .center {
     text-align: center;
-    margin-top:14%;
+    margin-top:22%;
 }
 
+
+.gametitle {
+  color: white;
+  margin-bottom: -1em;
+  margin-right: -1em;
+}
+
+
+.signnamebar {
+
+  color: red;
+  width: 19% !important;
+  margin-bottom: 1em !important;
+  margin-top: 4em !important;
+  margin-left: 2.2em !important;
+  box-shadow: 10px 10px 8px #888888;
+}
+
+.lockin {
+ 
+  width: 9% !important;
+  margin-bottom: 1em !important;
+  margin-top: 4em !important;
+  margin-left: 2em;
+  box-shadow: 10px 10px 8px #888888;
+}
+
+
 .barlength {
-  width: 20%;
-  margin-bottom: 50em;
+  width: 15%;
+  margin-bottom: -11em;
   margin: auto;
 
 
@@ -20,15 +75,18 @@ Selection Main Box
 
 .top-spacing {
   text-align: center;
-  margin-top: 130px;
-  background-color: #4CAF50; /* Green */
+  margin-bottom: 20em;
+  background-color: #131614; /* Green */
   border: none;
-  color: white;
   padding: 15px 32px;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+
 }
 
 /*
@@ -87,46 +145,36 @@ Show Hide Boxes
 */
 
 .show {
-
     margin-left: 5vw;
     margin-top: 9px;
 }
 .showname {
   text-align: center;
-    margin-bottom: 30px;
+  margin-bottom: -2em;
 }
+
+.shownamepicked {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: -1.4em;
+  color: white;
+}
+
 .hide {
     display: none
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*  */
+/* CSS FOR DROP BOX SYMBOLS */
+/*  */
 
 HTML CSSResult Skip Results Iframe
 EDIT ON
 body {
   background: #993;
 }
-
 /* Icons */
-
 @font-face {
   font-family: 'icomoon';
   src:url('http://webtalkto.com/demos/CSS-Dropdown-Menu/fonts/icomoon.eot');
@@ -201,7 +249,7 @@ body {
   content: "\e1bd";
 }
 .icon-pie:before {
-  content: "\e091";
+  content: "🔪";
 }
 .icon-binoculars:before {
   content: "\e07c";
@@ -212,13 +260,13 @@ body {
 
 /* front page square,triangle, circle */
 .icon-chrome1:before {
-  content: "◯";
+  content: "🔴";
 }
 .icon-chrome2:before {
-  content: "▵";
+  content: "🔺";
 }
 .icon-chrome3:before {
-  content: "□";
+  content: "🟥";
 }
 
 
@@ -263,28 +311,33 @@ body {
 
 /* animation div */
 #menu ul li a div {
-  -webkit-transition: all 0.9s ease;
-  -moz-transition: all 0.9s ease;
-  -ms-transition: all 0.9s ease;
-  -o-transition: all 0.9s ease;
-  transition: all 0.9s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #menu ul li a div.title-top {
   position: absolute;
   opacity: 0;
   bottom: 0;
+  margin-bottom: -4em;
+  font-size: 24px;
+  color: white;
 }
 #menu ul li a:hover div.title-top {
-  opacity: 1;
-
+  opacity: 5;
   bottom: 50%;
 }
 #menu ul li a div#icon-top {
   position: absolute;
-  font-size: 62px;
-
+  justify-content: space-between; 
+  font-size: 88px;
+  margin: 10px;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   opacity: 1;
+
+  transition: all 4s ease;
 }
 
 #c-selected {
@@ -294,16 +347,12 @@ body {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   opacity: 1;
 }
-
 li a:hover {
-  background-color: white;
+  
  }
-
-
-
 #menu ul li a:hover div#icon-top {
   background-color: red;
-  font-size: 22px;
+  font-size: 12px;
   opacity: 0;
 }
 #menu ul li a div.title {
@@ -314,42 +363,45 @@ li a:hover {
 #menu ul li a:hover div.title {
   opacity: 1;
   left: 0;
-  top: 9px;
+  color: white;
+  font-size: 1.5em;
 }
 #menu ul li a div#icon {
-  position: absolute;
-  font-size: 62px;
+  position: relative;
+  font-size: 52px;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   left: 0;
+  margin-top: 1em;
+  margin-left: .1em;
 }
 #menu ul li a:hover div#icon {
-    left: 50%;
-}
 
+}
 /* second level */
 #menu ul li ul {
   position: absolute;
   opacity: 0;
   visibility: hidden;
   left: 0;
-  padding-top: 10px;
-  -webkit-transition: all 0.9s ease;
-  -moz-transition: all 0.9s ease;
-  -ms-transition: all 0.9s ease;
-  -o-transition: all 0.9s ease;
-  transition: all 0.9s ease;
+  padding-top: 40px;
+  -webkit-transition: all 3s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 3s ease;
 }
 #menu ul li:hover ul {
     opacity: 1;
   visibility: visible;
 }
-
 @media only screen and (max-width: 880px),
 only screen and (max-device-width: 880px) {
   #menu {
         min-width: 470px;
+      
     }
   #menu ul li {
+    
     width: 70px;
     height: 40px;
     }
@@ -362,3 +414,168 @@ only screen and (max-device-width: 880px) {
 /* google font */
 
 <link href='https://fonts.googleapis.com/css?family=Nova+Round' rel='stylesheet' type='text/css'>
+
+
+
+/*  */
+/* CSS FOR ENTER GAME BUTTON */
+/*  */
+TML CSSResult Skip Results Iframe
+EDIT ON
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+body {
+  margin: 0;
+  height: 100%;
+  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.button_container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:60%;
+}
+
+.description, .link {
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+}
+
+.description {
+  font-size: 35px;
+}
+
+.btn {
+  border: none;
+  width: 20%;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: black;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.link a {
+  color: #000;
+  font-size: 25px; 
+}
+
+
+
+
+/*  */
+/* CSS FOR RAINBOX TEXT */
+/*  */
+
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+body {
+  background-color:#607D8B;
+}
+
+.container{
+  background-color:#E0F2F1;
+  padding:10px;
+  border-radius:15px;
+  box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+}
+
+h1, h2{
+  text-align:center;
+}
+
+h1 {
+  color:rgba(100, 50, 255, .8);
+  font-family: 'Pacifico', cursive;
+  color:#212121;
+}
+
+.rainbow {
+  
+   /* Font options */
+  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px 4px #000000;
+  font-size:40px;
+  
+   /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow 5s infinite; 
+  
+  /* Internet Explorer */
+  -ms-animation: rainbow 5s infinite;
+  
+  /* Standar Syntax */
+  animation: rainbow 8s infinite; 
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow{
+	10%{color: white;}
+  50%{color: red;}
+  100%{color: pink;}
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow{
+   0%{color: orange;}	
+  10%{color: purple;}	
+	20%{color: red;}
+  30%{color: CadetBlue;}
+	40%{color: yellow;}
+  50%{color: coral;}
+	60%{color: green;}
+  70%{color: cyan;}
+  80%{color: DeepPink;}
+  90%{color: DodgerBlue;}
+	100%{color: orange;}
+}
+
+/* Standar Syntax */
+@keyframes rainbow{
+	10%{color: white;}
+  50%{color: red;}
+  100%{color: pink;}
+}

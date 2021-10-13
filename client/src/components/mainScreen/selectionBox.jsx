@@ -68,20 +68,19 @@ class SelectionBox extends React.Component {
 
     render () {
         return (
-        <div className="center">
-        <h1 className="title"> Welcome to the Quiz Games! </h1>
-
-           <div className={this.state.playerPicked === true ?  'showName' : 'hide' }> Welcome Player {this.state.playerName}!</div>
+        <div className="fullscreenbox startbg">
+            <div className='registerbox'>
+            <h1 className={this.state.playerPicked === false ?  'gametitle rainbow' : 'hide' }> Player Registration </h1>
+        <div className={this.state.playerPicked === true ?  'shownamepicked' : 'hide' }> Welcome Player {this.state.playerName}</div>
         <div className={this.state.playerPicked === true ? 'hide' : 'showname' }>
         <form>
-        <input type="text" className="form-control barlength" placeholder="Enter Name Here .." onChange={this.handleChange}/>
-        <button value={this.state.playerName} onClick={this.handleSubmit}> lock in name </button>
+        <input type="text" className="barlength signnamebar" placeholder="Enter Name Here .." onChange={this.handleChange}/>
+        <button value={this.state.playerName} onClick={this.handleSubmit} className="lockin"> lock in name </button>
         </form>
          </div>
 
     <div id="menu">
         <ul>
-
 
         <li><a href="#"><div id={this.state.genreSelected === true ? ['c-selected'] : ['icon-top'] } class="icon-chrome1"></div> <div class="title-top">Category</div></a>
             <ul>
@@ -108,26 +107,36 @@ class SelectionBox extends React.Component {
     </ul>
 </div>
 
-        <Link
-        to={
-            {
-                pathname: "/game",
-                state: {
-                    playerName: this.state.playerName,
-                    difficulty: this.state.difficulty,
-                    genre: this.state.genre,
-                    genreID: this.state.genreID
-                  }
-            }
-        }
-
-        className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked ? 'top-spacing' : 'hide' }
-        >Click to Enter Game {this.state.playerName}
-        </Link>
-
-        </div>
+<div class="button_container">
+<Link
+to={
+    {
+        pathname: "/game",
+        state: {
+            playerName: this.state.playerName,
+            difficulty: this.state.difficulty,
+            genre: this.state.genre,
+            genreID: this.state.genreID
+          }
+    }
+}
+className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked && this.state.roundsSelected ? 'btn' : 'hide' }
+><span>Enter Game {this.state.playerName} </span>
+</Link>
+</div>
+</div>
+</div>
         );
     }
 }
 
 export default SelectionBox
+
+
+
+
+
+
+
+
+
