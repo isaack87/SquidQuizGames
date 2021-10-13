@@ -1,2 +1,2 @@
-# SquidQuizGame
-Quiz Game inspired by Squid Game
+# QuizGame
+Quiz Game
