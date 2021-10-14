@@ -12,10 +12,10 @@ class SelectionBox extends React.Component {
             genreID: "",
             genre: "",
             choice: "Pick a Selection",
-            difficultySelected: false,
-            roundsSelected: false,
-            genreSelected: false,
-            playerPicked: false,
+            difficultySelected: true,
+            roundsSelected: true,
+            genreSelected: true,
+            playerPicked: true,
             hover: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -75,7 +75,7 @@ class SelectionBox extends React.Component {
         <div className={this.state.playerPicked === true ? 'hide' : 'showname' }>
         <form>
         <input type="text" className="barlength signnamebar" placeholder="Enter Name Here .." onChange={this.handleChange}/>
-        <button value={this.state.playerName} onClick={this.handleSubmit} className="lockin"> lock in name </button>
+        <button value={this.state.playerName} onClick={this.handleSubmit} className="lockin"> submit </button>
         </form>
          </div>
 
@@ -116,7 +116,8 @@ to={
             playerName: this.state.playerName,
             difficulty: this.state.difficulty,
             genre: this.state.genre,
-            genreID: this.state.genreID
+            genreID: this.state.genreID,
+            rounds: this.state.rounds
           }
     }
 }

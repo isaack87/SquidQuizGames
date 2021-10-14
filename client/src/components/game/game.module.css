@@ -3,3 +3,18 @@
     color: green;
     margin-top: 100px;
 }
+
+.bg {
+    background-image: url('../../../dist/assets/game3.jpeg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+
+.fullscreenbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+   }
+

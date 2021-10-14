@@ -1,7 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
 import UserTopUI from './userUI.jsx'
-
 import Questions from './questions.jsx'
 import styles from './game.module.css'
 
@@ -16,9 +15,9 @@ class Game extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.bg}>
             <UserTopUI data={this.state.current} />
-            <h1 className={styles.title}> WELCOME TO QUIZ GAMES </h1>
+            <h1 className={styles.title}> Choose Wisely </h1>
              <Questions state={this.state.current}/>
             </div>
         )

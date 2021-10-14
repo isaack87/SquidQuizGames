@@ -1,26 +1,25 @@
 
 .userbar {
     display: flex;
-    margin: auto;    
+    margin: auto;
     margin-top: 40px;
     width: 60%;
-    border: solid #5B6DCD 1px;
     padding: 5px;
     color: red
 }
   .a,
   .b,
   .c {
-    background: #efefef;
+    background: transparent;
     padding: 5px;
     border: 1px solid #999;
   }
-  
+
   .b {
     flex: 1;
     text-align: center;
   }
-  
+
   .c {
     position: relative;
     right: 0;

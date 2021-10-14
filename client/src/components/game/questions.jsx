@@ -16,6 +16,7 @@ class Questions extends React.Component {
             choices: [],
             count: 0,
             round: 1,
+            roundsSelected: this.props.state.rounds,
             shuffled: [],
             lost: false,
             won: false,
@@ -24,7 +25,7 @@ class Questions extends React.Component {
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
     // this.shuffle = this.shuffle.bind(this)
     this.playerChoice = this.playerChoice.bind(this)
-    }   
+    }
 
 async componentDidMount() {
 
@@ -36,9 +37,9 @@ async componentDidMount() {
     }, () => {
         this.getQuestionAnswers()
     })
-} 
+}
 this.setState({
-    shuffled: this.shuffle(this.state.choices[0][0])
+    // shuffled: this.shuffle(this.state.choices[0][0])
     })
 }
 
@@ -78,7 +79,6 @@ getQuestionAnswers () {
   playerChoice(e) {
     e.preventDefault();
     if (e.target.value === this.state.answer[0]) {
-        alert('correct')
         this.setState((prevState) => ({
             answer: this.state.answer.slice(1),
             questions: this.state.questions.slice(1),
@@ -87,23 +87,20 @@ getQuestionAnswers () {
         }));
     }
     if (e.target.value !== this.state.answer[0]) {
-        alert('WRONG')
         this.setState({
             lost: true,
             lostRedirect: "/lost"
-        })    
+        })
     }
-    if (this.state.round === 10) {
-        alert('YOU WON')
+    if (this.state.round == this.state.roundsSelected) {
         this.setState({
             won: true,
             wonRedirect: "/won"
-        })    
+        })
     }
   }
 
         render() {
-
         //takes you to loser screen
         if (this.state.lostRedirect) {
             return <Redirect to={this.state.lostRedirect} />
@@ -114,7 +111,7 @@ getQuestionAnswers () {
 
         return (
         <div>
-        <GameRulesUI data= {this.props.state} 
+        <GameRulesUI data= {this.props.state}
                      round={this.state.round}
             />
         <div className={styles.flexcontainer}>
@@ -141,7 +138,7 @@ getQuestionAnswers () {
          })}
         </div>
         </div>
-        )           
+        )
         }
     }
 
