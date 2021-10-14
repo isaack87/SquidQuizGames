@@ -2,7 +2,6 @@ import React from 'react'
 import Questions from './questions.jsx'
 import styles from './game.module.css'
 
-
 class Game extends React.Component {
     constructor(props) {
         super(props)

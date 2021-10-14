@@ -12,37 +12,20 @@
     flex-direction: column;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .correct {
+    max-width:25%;
+    height:auto;
+    margin: auto;
+    margin-bottom: -10em;
+}
 
   .question {
     margin-top: 25%;
+    margin-bottom: 5%;
+    font-size: 2em;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
   :root {
     --background: #E5FFB3;

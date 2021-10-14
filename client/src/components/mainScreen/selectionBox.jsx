@@ -6,16 +6,16 @@ class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "isaac",
-            difficulty: "easy",
+            playerName: "",
+            difficulty: "",
             rounds: "",
-            genreID: "23",
-            genre: "History",
+            genreID: "",
+            genre: "",
             choice: "Pick a Selection",
-            difficultySelected: true,
-            roundsSelected: true,
-            genreSelected: true,
-            playerPicked: true,
+            difficultySelected: false,
+            roundsSelected: false,
+            genreSelected: false,
+            playerPicked: false,
             hover: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -102,6 +102,7 @@ class SelectionBox extends React.Component {
             <ul>
                 <li><a href="#" onClick={this.onChangeRounds.bind(this, '5')}><div id="icon" class="icon-pie"></div> <div class="title">5 Rounds</div></a></li>
                 <li><a href="#" onClick={this.onChangeRounds.bind(this, '10')}><div id="icon" class="icon-pie"></div> <div class="title">10 Rounds</div></a></li>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '')}><div id="icon" class="icon-pie"></div> <div class="title">Unlimited</div></a></li>
             </ul>
         </li>
     </ul>

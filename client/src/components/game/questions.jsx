@@ -3,7 +3,6 @@ import { BrowserRouter as Link, Redirect} from "react-router-dom";
 import styles from './questions.module.css'
 import GameRulesUI from './gameRulesUI.jsx'
 
-
 class Questions extends React.Component {
     constructor(props) {
         super(props)
@@ -13,6 +12,7 @@ class Questions extends React.Component {
             questionList: '',
             questions: '',
             answer: '',
+            correct: false,
             choices: [],
             count: 0,
             lives: 3,
@@ -28,16 +28,22 @@ class Questions extends React.Component {
     this.shuffle = this.shuffle.bind(this)
     this.playerChoice = this.playerChoice.bind(this)
     this.getIntialQuestionsAPI = this.getIntialQuestionsAPI.bind(this)
+    this.correctAnimation = this.correctAnimation.bind(this)
     }
 
  componentDidMount() {
      this.getIntialQuestionsAPI()
 }
 
+componentDidUpdate(){
+    setTimeout(() => this.setState({correct: false}), 2000);
+  }
+
+
 //gets intial questions on game load once
 async getIntialQuestionsAPI () {
     if (this.state.loaded === false) {
-        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${this.props.state.genreID}&amount=50&difficulty=${this.props.state.difficulty}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${this.props.state.genreID}&difficulty=${this.props.state.difficulty}&type=multiple`);
         const questions = await response.json();
         this.setState({
             questionList: questions
@@ -89,7 +95,8 @@ getQuestionAnswers () {
             questions: this.state.questions.slice(1),
             count: prevState.count + 1,
             round: prevState.round + 1,
-            score: prevState.score + 1
+            score: prevState.score + 1,
+            correct: true
         }));
     } else {
         this.setState((prevState) => ({
@@ -97,20 +104,30 @@ getQuestionAnswers () {
         }));
     }
 
-
     if (e.target.value !== this.state.answer[0] && this.state.lives <= 1) {
         this.setState({
             lost: true,
             lostRedirect: "/lost"
         })
     }
-    if (this.state.round == this.state.roundsSelected) {
+    if (this.state.round == this.state.roundsSelected && this.state.round !== '') {
         this.setState({
             won: true,
             wonRedirect: "/won"
         })
     }
   }
+
+  //correct animation appears below question to indicate a
+  correctAnimation() {
+    let imageURL = '';
+    if (this.state.correct === true) {
+        imageURL = "https://media1.giphy.com/media/UXgf6pu1LlQp6CPDi0/giphy.gif?cid=ecf05e47p1qyq9h6zrtijex1inknhzpdlul8m1gib53favd1&rid=giphy.gif&ct=g";
+    } else {
+        imageURL = "";
+        }    
+    return imageURL
+    }
 
         render() {
         //takes you to loser screen
@@ -137,28 +154,25 @@ getQuestionAnswers () {
         return (
         <div>
             <ul>
-                <button className={styles.animation} onClick={this.playerChoice}  value={e[this.state.count][0]}> {e[this.state.count][0]} </button>
+                <button className={styles.animation}  onClick={this.playerChoice} value={e[this.state.count][0]}> A. {e[this.state.count][0]} ☂️</button>
             </ul>
             <ul>
-                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][1]}> {e[this.state.count][1]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][1]}> B. {e[this.state.count][1]} ⭐</button>
             </ul>
             <ul>
-                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][2]}> {e[this.state.count][2]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][2]}> C. {e[this.state.count][2]} ⭕</button>
             </ul>
             <ul>
-                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][3]}> {e[this.state.count][3]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][3]}> D. {e[this.state.count][3]} 🔺</button>
             </ul>
         </div>
         )
          })}
+                
+           <img className={styles.correct} src={this.correctAnimation()}/>
+     
+
         </div>
-
-
-
-        <canvas id="myCanvas"></canvas>
-
-
-
         </div>
         )
         }
