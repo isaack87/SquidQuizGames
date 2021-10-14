@@ -6,11 +6,11 @@ class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "",
-            difficulty: "",
+            playerName: "isaac",
+            difficulty: "easy",
             rounds: "",
-            genreID: "",
-            genre: "",
+            genreID: "23",
+            genre: "History",
             choice: "Pick a Selection",
             difficultySelected: true,
             roundsSelected: true,

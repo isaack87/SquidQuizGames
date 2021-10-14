@@ -1,6 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
-import UserTopUI from './userUI.jsx'
 import Questions from './questions.jsx'
 import styles from './game.module.css'
 
@@ -16,7 +14,6 @@ class Game extends React.Component {
     render() {
         return (
             <div className={styles.bg}>
-            <UserTopUI data={this.state.current} />
              <Questions state={this.state.current}/>
             </div>
         )

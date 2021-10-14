@@ -2,10 +2,16 @@
 .userbar {
     display: flex;
     margin: auto;
+    background-color:#89CFF0;
     margin-top: 40px;
-    width: 60%;
+    margin-bottom: -80px;
+    width: 80%;
+    font-size:100%;
     padding: 5px;
-    color: red
+    color: black;
+    font-weight: bolder;
+    -webkit-box-shadow: 6px 5px 50px 47px #89CFF0; 
+    box-shadow: 6px 5px 50px 47px #89CFF0;    
 }
   .a,
   .b,

@@ -41,7 +41,9 @@
 
 
 
-
+  .question {
+    margin-top: 25%;
+  }
   :root {
     --background: #E5FFB3;
     --background-accent: #DBF8A3;
@@ -85,7 +87,8 @@
   }
   
   .animation:hover {
-
+    -webkit-box-shadow: 4px 5px 16px 18px #89CFF0; 
+    box-shadow: 4px 5px 16px 18px #89CFF0;
     outline: 4px solid white;
 
   }
