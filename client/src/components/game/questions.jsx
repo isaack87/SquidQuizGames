@@ -15,6 +15,8 @@ class Questions extends React.Component {
             answer: '',
             choices: [],
             count: 0,
+            lives: 3,
+            score: 0,
             round: 1,
             roundsSelected: this.props.state.rounds,
             shuffled: [],
@@ -89,10 +91,17 @@ getQuestionAnswers () {
             answer: this.state.answer.slice(1),
             questions: this.state.questions.slice(1),
             count: prevState.count + 1,
-            round: prevState.round + 1
+            round: prevState.round + 1,
+            score: prevState.score + 1
+        }));
+    } else {
+        this.setState((prevState) => ({
+            lives: prevState.lives - 1
         }));
     }
-    if (e.target.value !== this.state.answer[0]) {
+
+
+    if (e.target.value !== this.state.answer[0] && this.state.lives <= 1) {
         this.setState({
             lost: true,
             lostRedirect: "/lost"
@@ -121,6 +130,8 @@ getQuestionAnswers () {
                      round={this.state.round}
             />
         <div className={styles.flexcontainer}>
+            <h3> Lives remaining: {this.state.lives} </h3>
+            <h3> How many you got correct {this.state.score} </h3>
          <ul>
          {this.state.questions[0]}
          </ul>
@@ -128,21 +139,28 @@ getQuestionAnswers () {
         return (
         <div>
             <ul>
-                <button onClick={this.playerChoice} value={e[this.state.count][0]}> {e[this.state.count][0]} </button>
+                <button className={styles.animation} onClick={this.playerChoice}  value={e[this.state.count][0]}> {e[this.state.count][0]} </button>
             </ul>
             <ul>
-                <button onClick={this.playerChoice} value={e[this.state.count][1]}> {e[this.state.count][1]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][1]}> {e[this.state.count][1]} </button>
             </ul>
             <ul>
-                <button onClick={this.playerChoice} value={e[this.state.count][2]}> {e[this.state.count][2]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][2]}> {e[this.state.count][2]} </button>
             </ul>
             <ul>
-                <button onClick={this.playerChoice} value={e[this.state.count][3]}> {e[this.state.count][3]} </button>
+                <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][3]}> {e[this.state.count][3]} </button>
             </ul>
         </div>
         )
          })}
         </div>
+
+
+
+        <canvas id="myCanvas"></canvas>
+
+
+
         </div>
         )
         }

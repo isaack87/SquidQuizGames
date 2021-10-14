@@ -17,7 +17,6 @@ class Game extends React.Component {
         return (
             <div className={styles.bg}>
             <UserTopUI data={this.state.current} />
-            <h1 className={styles.title}> Choose Wisely </h1>
              <Questions state={this.state.current}/>
             </div>
         )
