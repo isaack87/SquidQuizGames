@@ -23,7 +23,7 @@ class Questions extends React.Component {
             loaded: false
         }
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
-    // this.shuffle = this.shuffle.bind(this)
+    this.shuffle = this.shuffle.bind(this)
     this.playerChoice = this.playerChoice.bind(this)
     }
 
@@ -38,10 +38,28 @@ async componentDidMount() {
         this.getQuestionAnswers()
     })
 }
-this.setState({
-    // shuffled: this.shuffle(this.state.choices[0][0])
-    })
 }
+
+//helper function to sort answers to always be different position
+shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
 
 getQuestionAnswers () {
     const list = this.state.questionList;
@@ -52,29 +70,17 @@ getQuestionAnswers () {
     list.results.map(e => {
         questions.push(e.question)
         answer.push(e.correct_answer)
-        choices.push([].concat(e.incorrect_answers, e.correct_answer))
-    })
-    this.setState({
-        questions: questions,
-        answer: answer,
-        choices: [choices]
+        choices.push(this.shuffle(e.incorrect_answers.concat(e.correct_answer)))
+        console.log(choices, '😂')
     })
 
+        this.setState({
+            questions: questions,
+            answer: answer,
+            choices: [choices]
+        })
+
 }
-//     //shuffle choices to be random everytime
-//     shuffle(array) {
-//     let currentIndex = array.length,  randomIndex;
-//     // While there remain elements to shuffle...
-//     while (currentIndex != 0) {
-//       // Pick a remaining element...
-//       randomIndex = Math.floor(Math.random() * currentIndex);
-//       currentIndex--;
-//       // And swap it with the current element.
-//       [array[currentIndex], array[randomIndex]] = [
-//         array[randomIndex], array[currentIndex]];
-//     }
-//     return array;
-//   }
 
   playerChoice(e) {
     e.preventDefault();
