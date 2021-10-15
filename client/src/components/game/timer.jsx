@@ -9,8 +9,7 @@ const Timer = props => {
     <div className={props.roundsSelected === '5' ? styles.progress5rounds : styles.progress10rounds}>
     <div className={styles.color}></div>
     </div>
-
-    <div className={props.roundsSelected !== '' ? styles.timerbar : styles.hide}>Time Left: {props.seconds}</div>
+    <div className={styles.timerbar }> Time Left: {props.seconds}</div>
 </div>
 
 

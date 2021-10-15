@@ -7,15 +7,15 @@ class SelectionBox extends React.Component {
         super (props)
         this.state = {
             playerName: "",
-            difficulty: "easy",
-            rounds: "5",
+            difficulty: "",
+            rounds: "",
             genreID: "",
-            genre: "History",
+            genre: "",
             choice: "Pick a Selection",
-            difficultySelected: true,
-            roundsSelected: true,
-            genreSelected: true,
-            playerPicked: true,
+            difficultySelected: false,
+            roundsSelected: false,
+            genreSelected: false,
+            playerPicked: false,
             hover: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -44,11 +44,14 @@ class SelectionBox extends React.Component {
         }
         onChangeGenre(e) {
             let genrePicked;
+
             if (e === 27) {
                 genrePicked = 'Animals'
             } else if (e === 21) {
                 genrePicked = 'Sports'
-            } else {
+            } else if (e === '') {
+                genrePicked = 'Random'
+            }else {
                 genrePicked = 'History'
             }
             this.setState({
@@ -71,8 +74,8 @@ class SelectionBox extends React.Component {
         <div className="fullscreenbox startbg">
             <div className='registerbox'>
             <h1 className={this.state.playerPicked === false ?  'gametitle rainbow' : 'hide' }> Player Registration </h1>
-        <div className={this.state.playerPicked === true ?  'shownamepicked' : 'hide' }> Welcome Player {this.state.playerName}</div>
-        <div className={this.state.playerPicked === true ? 'hide' : 'showname' }>
+        <div className={this.state.playerPicked === true ?  'shownamepicked rainbow'  : 'hide' }> Welcome Player {this.state.playerName}</div>
+        <div className={this.state.playerPicked === true ? 'hidemargin hide' : 'showname' }>
         <form>
         <input type="text" className="barlength signnamebar" placeholder="Enter Name Here .." onChange={this.handleChange}/>
         <button value={this.state.playerName} onClick={this.handleSubmit} className="lockin"> submit </button>
@@ -86,6 +89,7 @@ class SelectionBox extends React.Component {
             <ul>
                 <li><a href="#" onClick={this.onChangeGenre.bind(this, 27)}><div id="icon" className="icon-pie"></div> <div className="title">Animals</div></a></li>
                 <li><a href="#" onClick={this.onChangeGenre.bind(this, 21)}><div id="icon" className="icon-pie"></div> <div className="title">Sports</div></a></li>
+                <li><a href="#" onClick={this.onChangeGenre.bind(this, '')}><div id="icon" className="icon-pie"></div> <div className="title">Random</div></a></li>
                 <li><a href="#" onClick={this.onChangeGenre.bind(this, 23)}><div id="icon" className="icon-pie"></div> <div className="title">History</div></a></li>
             </ul>
         </li>
@@ -102,7 +106,7 @@ class SelectionBox extends React.Component {
             <ul>
                 <li><a href="#" onClick={this.onChangeRounds.bind(this, '5')}><div id="icon" className="icon-pie"></div> <div className="title">5 Rnds</div></a></li>
                 <li><a href="#" onClick={this.onChangeRounds.bind(this, '10')}><div id="icon" className="icon-pie"></div> <div className="title">10 Rnds</div></a></li>
-                <li><a href="#" onClick={this.onChangeRounds.bind(this, '')}><div id="icon" className="icon-pie"></div> <div className="title">Unlimited</div></a></li>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '50')}><div id="icon" className="icon-pie"></div> <div className="title">Unlimited</div></a></li>
             </ul>
         </li>
     </ul>
@@ -122,7 +126,7 @@ to={
           }
     }
 }
-className={this.state.difficultySelected && this.state.genreSelected && this.state.playerPicked && this.state.roundsSelected ? 'btn' : 'hide' }
+className={this.state.difficultySelected  && this.state.playerPicked && this.state.roundsSelected ? 'btn' : 'hide' }
 ><span>Enter Game {this.state.playerName} </span>
 </Link>
 </div>

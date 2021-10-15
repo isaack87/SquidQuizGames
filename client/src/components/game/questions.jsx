@@ -26,7 +26,7 @@ class Questions extends React.Component {
             won: false,
             loaded: false,
             questionsLeft: this.props.state.rounds,
-            seconds: 30 * this.props.state.rounds
+            seconds: 1
 
         }
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
@@ -41,11 +41,33 @@ class Questions extends React.Component {
     }
 
  componentDidMount() {
-     if (this.state.roundsSelected !== "") {
+
+    if (this.state.roundsSelected === "50") {
         this.getIntialQuestionsAPI()
         this.startTimer()
-     } else {
+        this.setState({
+            seconds: 300,
+            lives: ['💖','💖','💖','💖','💖']
+        })
+
+     }
+     if (this.state.roundsSelected === "5") {
         this.getIntialQuestionsAPI()
+        this.startTimer()
+        this.setState({
+            seconds: 30 * this.props.state.rounds,
+            lives: ['💖','💖','💖']
+        })
+
+     }
+     if (this.state.roundsSelected === "10") {
+        this.getIntialQuestionsAPI()
+        this.startTimer()
+        this.setState({
+            seconds: 30 * this.props.state.rounds,
+            lives: ['💖','💖','💖','💖','💖']
+        })
+
      }
 }
 
@@ -106,6 +128,8 @@ shuffle(array) {
     return array;
   }
 
+
+  //takes a  array of strings and converts encode64 to text
   encode64 (array) {
         var Buffer = require('buffer').Buffer
         let result = []
@@ -115,6 +139,7 @@ shuffle(array) {
         return result
   }
 
+  //takes a  nested array of strings and converts encode64 to text
   encode64Nested (array) {
     var Buffer = require('buffer').Buffer
     let transformed = []
@@ -129,18 +154,16 @@ shuffle(array) {
         let  chunk = transformed.slice(k, k+4)
         finalArray.push(chunk)
     }
-    console.log(finalArray, '☠️☠️☠️☠️☠️☠️☠️☠️☠️')
     return finalArray
 }
 
 
-
+// grabs API data and structures question, answer
 getQuestionAnswers () {
     const list = this.state.questionList;
     const questions = []
     const answer = []
     const choices = []
-
     list.results.map(e => {
         questions.push(e.question)
         answer.push(e.correct_answer)
@@ -151,11 +174,11 @@ getQuestionAnswers () {
             answer: this.encode64(answer),
             choices: [this.encode64Nested(choices)]
         })
-
         //remove this shows answers, testing purpose
         console.log('master answers', this.encode64(answer))
 }
 
+  //validates player choice if right or wrong
   playerChoice(e) {
     e.preventDefault();
     if (e.target.value === this.state.answer[0]) {

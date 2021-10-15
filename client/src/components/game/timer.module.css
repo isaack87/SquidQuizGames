@@ -16,7 +16,6 @@
     width: 70vw;
     z-index: 1;
 }
-
 .progress5rounds .color{
     position: absolute;
     background-color: white;
@@ -24,7 +23,7 @@
     height: 2vh;
     margin-top: -.8em;
     border-radius: 5px;
-    animation: progres 150 infinite linear;  
+    animation: progress 150s linear;
     z-index: 1;
 }
 
@@ -43,7 +42,7 @@
     height: 2vh;
     margin-top: -.8em;
     border-radius: 5px;
-    animation: progres 300s infinite linear;  
+    animation: progress 300s infinite linear;
     z-index: 1;
 }
 
@@ -57,12 +56,12 @@
   }
 
   .hide {
-    display: none
+    display: none !important;
   }
 
-@keyframes progres{
+@keyframes progress{
     0%{
-      width: 1%;
+      width: 0%;
     }
     25%{
         width: 25%;
@@ -76,6 +75,6 @@
     100%{
         width: 100%;
     }
-}; 
+};
 
 
