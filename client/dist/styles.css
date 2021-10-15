@@ -5,14 +5,17 @@ button { padding: 0; background: none; border: none; outline: none; }
 Selection Main Box
 */
 
+
 .startbg {
   background-image: url('./assets/background5.jpeg') ;
   background-repeat: no-repeat;
   background-size: cover;
+
  }
  .fullscreenbox {
   position: fixed;
   top: 0;
+
   left: 0;
   bottom: 0;
   right: 0;
@@ -20,8 +23,9 @@ Selection Main Box
 
   .registerbox {
     background-image: url('./assets/card3.jpeg') ;
-    width: 30%;
-    height: 35%;
+    width: 50%;
+    height: 55%;
+    border: 2px red solid;
     box-shadow: 10px 10px 8px #888888;
     margin: auto;
     text-align: center;

@@ -14,6 +14,7 @@
     position: relative;
     height: .7vh;
     width: 70vw;
+    z-index: 1;
 }
 
 .progress5rounds .color{
@@ -24,11 +25,16 @@
     margin-top: -.8em;
     border-radius: 5px;
     animation: progres 150 infinite linear;  
+    z-index: 1;
 }
 
-
-
-
+.progress10rounds{
+    display: inline-block;
+    position: relative;
+    height: .7vh;
+    width: 70vw;
+    z-index: 1;
+}
 
 .progress10rounds .color{
     position: absolute;
@@ -38,14 +44,7 @@
     margin-top: -.8em;
     border-radius: 5px;
     animation: progres 300s infinite linear;  
-}
-
-.progress10rounds{
-    display: inline-block;
-    position: relative;
-    height: .7vh;
-    width: 70vw;
-
+    z-index: 1;
 }
 
 
@@ -54,7 +53,7 @@
     margin-left: 46%;
     font-size: 1.6em;
     position: relative;
-    z-index: 1;
+    text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
   }
 
   .hide {
@@ -63,13 +62,13 @@
 
 @keyframes progres{
     0%{
-      width: 75%;
+      width: 1%;
     }
     25%{
-        width: 75%;
+        width: 25%;
     }
     50%{
-        width: 75%;
+        width: 50%;
     }
     75%{
         width: 75%;

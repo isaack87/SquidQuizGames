@@ -8,7 +8,7 @@ class SelectionBox extends React.Component {
         this.state = {
             playerName: "",
             difficulty: "",
-            rounds: "10",
+            rounds: "5",
             genreID: "",
             genre: "",
             choice: "Pick a Selection",
