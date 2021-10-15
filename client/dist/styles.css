@@ -1,23 +1,9 @@
 input { border-style: none; background: transparent; outline: none; }
 button { padding: 0; background: none; border: none; outline: none; }
 
-
-
-
-
-
 /*
 Selection Main Box
 */
-
-div.centered{
-  width: 100px;
-  height: 50px;
-  position:fixed; 
-  top: calc(50% - 25px); // half of width
-  left: calc(50% - 50px); // half of height
-}
-
 
 .startbg {
   background-image: url('./assets/background5.jpeg') ;
@@ -35,7 +21,7 @@ div.centered{
   .registerbox {
     background-image: url('./assets/card3.jpeg') ;
     width: 30%;
-    height: 23%;
+    height: 35%;
     box-shadow: 10px 10px 8px #888888;
     margin: auto;
     text-align: center;
