@@ -22,11 +22,13 @@
   .question {
     margin-top: 25%;
     margin-bottom: 5%;
-    font-size: 2em;
-    width: 100%;
+    font-size: 1em;
+    position: relative;
+    width: 100%;display: flex;
     text-align: center;
     justify-content: center;
   }
+
   :root {
     --background: #E5FFB3;
     --background-accent: #DBF8A3;
@@ -53,20 +55,18 @@
   
   .animation {
     display: block;
-    cursor: pointer;
     outline: none;
-    border: none;
     background-color: var(--light);
-    width: 400px;
-    height: 70px;
+    width: 300px;
+    margin-top: .5em !important;
+    height: 50px;
     border-radius: 30px;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size:.6em;
     color: var(--text);
     background-size: 100% 100%;
     box-shadow: 0 0 0 7px var(--light) inset;
-    margin-bottom: 15px;
     margin: auto;
+    cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🐙</text></svg>") 16 0,auto !important;
   }
   
   .animation:hover {

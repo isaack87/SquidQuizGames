@@ -15,7 +15,7 @@ class Questions extends React.Component {
             correct: false,
             choices: [],
             count: 0,
-            lives: 3,
+            lives: ['💖','💖','💖'],
             score: 0,
             round: 1,
             roundsSelected: this.props.state.rounds,
@@ -99,12 +99,12 @@ getQuestionAnswers () {
             correct: true
         }));
     } else {
-        this.setState((prevState) => ({
-            lives: prevState.lives - 1
-        }));
+        this.setState({
+            lives: this.state.lives.slice(1)
+        });
     }
 
-    if (e.target.value !== this.state.answer[0] && this.state.lives <= 1) {
+    if (e.target.value !== this.state.answer[0] && this.state.lives.length === 1) {
         this.setState({
             lost: true,
             lostRedirect: "/lost"

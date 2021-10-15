@@ -6,16 +6,16 @@ class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "",
-            difficulty: "",
-            rounds: "",
+            playerName: "Isaac",
+            difficulty: "easy",
+            rounds: "5",
             genreID: "",
-            genre: "",
+            genre: "History",
             choice: "Pick a Selection",
-            difficultySelected: false,
-            roundsSelected: false,
-            genreSelected: false,
-            playerPicked: false,
+            difficultySelected: true,
+            roundsSelected: true,
+            genreSelected: true,
+            playerPicked: true,
             hover: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -100,8 +100,8 @@ class SelectionBox extends React.Component {
 
         <li><a href="#"><div id={this.state.roundsSelected === true ? ['c-selected'] : ['icon-top'] } class="icon-chrome3"></div> <div class="title-top">Rounds</div></a>
             <ul>
-                <li><a href="#" onClick={this.onChangeRounds.bind(this, '5')}><div id="icon" class="icon-pie"></div> <div class="title">5 Rounds</div></a></li>
-                <li><a href="#" onClick={this.onChangeRounds.bind(this, '10')}><div id="icon" class="icon-pie"></div> <div class="title">10 Rounds</div></a></li>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '5')}><div id="icon" class="icon-pie"></div> <div class="title">5 Rnds</div></a></li>
+                <li><a href="#" onClick={this.onChangeRounds.bind(this, '10')}><div id="icon" class="icon-pie"></div> <div class="title">10 Rnds</div></a></li>
                 <li><a href="#" onClick={this.onChangeRounds.bind(this, '')}><div id="icon" class="icon-pie"></div> <div class="title">Unlimited</div></a></li>
             </ul>
         </li>

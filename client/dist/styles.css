@@ -6,7 +6,6 @@ button { padding: 0; background: none; border: none; outline: none; }
 
 
 
-
 /*
 Selection Main Box
 */
@@ -30,6 +29,7 @@ Selection Main Box
   .registerbox {
     background-image: url('./assets/card3.jpeg') ;
     width: 30%;
+    height: 23%;
     box-shadow: 10px 10px 8px #888888;
     margin: auto;
     text-align: center;
@@ -163,6 +163,7 @@ Show Hide Boxes
 
 .shownamepicked {
   text-align: center;
+  margin-top: 2em;
   font-size: 2em;
   margin-bottom: -1.4em;
   color: white;
@@ -257,7 +258,7 @@ body {
   content: "\e1bd";
 }
 .icon-pie:before {
-  content: "🔪";
+  content: "🚦";
 }
 .icon-binoculars:before {
   content: "\e07c";
@@ -364,13 +365,12 @@ li a:hover {
 }
 #menu ul li a div.title {
   position: absolute;
-  left: 100%;
   opacity: 4;
 }
 #menu ul li a:hover div.title {
 
-  color: red;
-  font-weight: 400;
+  color: white;
+  font-weight: bolder;
   font-size: 1.5em;
 }
 #menu ul li a div#icon {
@@ -381,6 +381,7 @@ li a:hover {
   margin-top: 1em;
 }
 #menu ul li a:hover div#icon {
+  width: 25px;
 
 }
 /* second level */
@@ -396,7 +397,7 @@ li a:hover {
   transition: all 3s ease;
 }
 #menu ul li:hover ul {
-    opacity: 1;
+  opacity: 1;
   visibility: visible;
 }
 @media only screen and (max-width: 880px),
@@ -464,7 +465,7 @@ body {
   position: relative;
   color: #fff;
   font-weight: 700;
-  margin-top: 6.5em !important;
+  margin-top: 8em !important;
   font-size: 15px;
   background-color: #222;
   padding: 17px 60px;
