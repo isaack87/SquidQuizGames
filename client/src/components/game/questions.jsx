@@ -36,13 +36,15 @@ class Questions extends React.Component {
     this.correctAnimation = this.correctAnimation.bind(this)
     this.startTimer = this.startTimer.bind(this);
     this.countDown = this.countDown.bind(this);
+    this.encode64 = this.encode64.bind(this);
+    this.encode64Nested = this.encode64Nested.bind(this);
     }
 
  componentDidMount() {
      if (this.state.roundsSelected !== "") {
         this.getIntialQuestionsAPI()
         this.startTimer()
-     } else { 
+     } else {
         this.getIntialQuestionsAPI()
      }
 }
@@ -62,7 +64,7 @@ componentDidUpdate(){
     if (this.state.seconds > 0) {
       this.setState({
           seconds: setInterval(this.countDown, 1000)
-      }) 
+      })
     }
     this.countDown()
   }
@@ -70,14 +72,15 @@ componentDidUpdate(){
     // Remove one second, set state so a re-render happens.
     let seconds = this.state.seconds - 1;
     this.setState({
-      seconds: seconds,
+      seconds: seconds
     });
   }
 
     //gets intial questions on game load once
     async getIntialQuestionsAPI () {
+
     if (this.state.loaded === false) {
-        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${this.props.state.genreID}&difficulty=${this.props.state.difficulty}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${this.props.state.genreID}&difficulty=${this.props.state.difficulty}&type=multiple&encode=base64`);
         const questions = await response.json();
         this.setState({
             questionList: questions
@@ -103,6 +106,35 @@ shuffle(array) {
     return array;
   }
 
+  encode64 (array) {
+        var Buffer = require('buffer').Buffer
+        let result = []
+        for (let i =0; i < array.length; i++) {
+            result.push(Buffer.from(array[i], 'base64').toString('ascii'))
+        }
+        return result
+  }
+
+  encode64Nested (array) {
+    var Buffer = require('buffer').Buffer
+    let transformed = []
+    let finalArray = []
+
+    for (let i =0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            transformed.push(Buffer.from(array[i][j], 'base64').toString('ascii'))
+    }
+}
+    for (let k = 0; k < transformed.length; k += 4) {
+        let  chunk = transformed.slice(k, k+4)
+        finalArray.push(chunk)
+    }
+    console.log(finalArray, '☠️☠️☠️☠️☠️☠️☠️☠️☠️')
+    return finalArray
+}
+
+
+
 getQuestionAnswers () {
     const list = this.state.questionList;
     const questions = []
@@ -110,18 +142,19 @@ getQuestionAnswers () {
     const choices = []
 
     list.results.map(e => {
-        console.log(e.correct_answer)
         questions.push(e.question)
         answer.push(e.correct_answer)
         choices.push(this.shuffle(e.incorrect_answers.concat(e.correct_answer)))
     })
         this.setState({
-            questions: questions,
-            answer: answer,
-            choices: [choices]
+            questions: this.encode64(questions),
+            answer: this.encode64(answer),
+            choices: [this.encode64Nested(choices)]
         })
-}
 
+        //remove this shows answers, testing purpose
+        console.log('master answers', this.encode64(answer))
+}
 
   playerChoice(e) {
     e.preventDefault();
@@ -162,7 +195,7 @@ getQuestionAnswers () {
         imageURL = "https://media1.giphy.com/media/UXgf6pu1LlQp6CPDi0/giphy.gif?cid=ecf05e47p1qyq9h6zrtijex1inknhzpdlul8m1gib53favd1&rid=giphy.gif&ct=g";
     } else {
         imageURL = "";
-        }    
+        }
     return imageURL
     }
 
@@ -185,7 +218,7 @@ getQuestionAnswers () {
         <Timer roundsSelected= {this.state.roundsSelected}
                seconds={this.state.seconds}/>
 
-        <div className={styles.flexcontainer}>   
+        <div className={styles.flexcontainer}>
          <span className={styles.question}>{this.state.questions[0]}</span>
         {this.state.choices.map(e => {
         return (
@@ -204,7 +237,7 @@ getQuestionAnswers () {
             </ul>
         </div>
         )
-         })} 
+         })}
            <img className={styles.correct} src={this.correctAnimation()}/>
         </div>
 

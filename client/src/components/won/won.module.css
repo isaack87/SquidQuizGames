@@ -1,9 +1,24 @@
-.center {
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 200px;
-    height: 200px;
+.flexcontainer {
+    display: flex;
+    background-color: transparent;
+    width: 60%;
+    height: 50%;
+    justify-content: center;
+    margin-top: -5em;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    margin: auto;
+    flex-direction: column;
+  }
+
+.reset {
+
+    color: white;
+
+}
+
+.title {
+
+    color: white;
 }

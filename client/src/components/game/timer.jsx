@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 
 
 const Timer = props => {
-    return (  
+    return (
 <div>
-<div className={styles.body}> 
+<div className={styles.body}>
     <div className={props.roundsSelected === '5' ? styles.progress5rounds : styles.progress10rounds}>
     <div className={styles.color}></div>
     </div>
+
     <div className={props.roundsSelected !== '' ? styles.timerbar : styles.hide}>Time Left: {props.seconds}</div>
 </div>
 
