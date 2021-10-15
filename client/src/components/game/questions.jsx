@@ -22,26 +22,82 @@ class Questions extends React.Component {
             shuffled: [],
             lost: false,
             won: false,
-            loaded: false
+            loaded: false,
+            time: {}, 
+            seconds: 30,
+            timer: 0
+
         }
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
     this.shuffle = this.shuffle.bind(this)
     this.playerChoice = this.playerChoice.bind(this)
     this.getIntialQuestionsAPI = this.getIntialQuestionsAPI.bind(this)
     this.correctAnimation = this.correctAnimation.bind(this)
+    this.startTimer = this.startTimer.bind(this);
+    this.countDown = this.countDown.bind(this);
     }
 
  componentDidMount() {
      this.getIntialQuestionsAPI()
+     let timeLeftVar = this.secondsToTime(this.state.seconds);
+     this.setState({ time: timeLeftVar });
+     this.startTimer()
 }
 
 componentDidUpdate(){
     setTimeout(() => this.setState({correct: false}), 2000);
+
+    // when timer goes to zero you lose 1 life
+    // checks to see if life is 0 and set to lose condition
+    if(this.state.seconds ===0) {
+        if (this.state.lives.length === 1) {
+            this.setState({
+                lost: true,
+                lostRedirect: "/lost"
+            })
+        }
+        alert('Ran out of Time, Lose 1 Life, NEXT QUESTION!')
+        this.setState((prevState) => ({
+            seconds: 5,
+            lives: this.state.lives.slice(1),
+            answer: this.state.answer.slice(1),
+            questions: this.state.questions.slice(1),
+            round: prevState.round + 1,
+        }))
+    }
   }
 
+  //helper functions for countdown
+  secondsToTime(secs){
+    let divisor_for_minutes = secs % (60 * 60);
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
 
-//gets intial questions on game load once
-async getIntialQuestionsAPI () {
+    let obj = {
+      "s": seconds
+    };
+    return obj;
+  }
+  startTimer() {
+    if (this.state.timer == 0 && this.state.seconds > 0) {
+      this.state.timer = setInterval(this.countDown, 1000);
+    }
+  }
+  countDown() {
+    // Remove one second, set state so a re-render happens.
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
+    // Check if we're at zero.
+    if (seconds == 0) { 
+      clearInterval(this.timer);
+    }
+  }
+
+    //gets intial questions on game load once
+    async getIntialQuestionsAPI () {
     if (this.state.loaded === false) {
         const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${this.props.state.genreID}&difficulty=${this.props.state.difficulty}&type=multiple`);
         const questions = await response.json();
@@ -86,6 +142,7 @@ getQuestionAnswers () {
             choices: [choices]
         })
 }
+
 
   playerChoice(e) {
     e.preventDefault();
@@ -146,8 +203,9 @@ getQuestionAnswers () {
 
             />
         <div className={styles.flexcontainer}>
-  
          <ul className={styles.question}>
+          Time Left: {this.state.time.s}
+         <br/>
          {this.state.questions[0]}
          </ul>
         {this.state.choices.map(e => {
@@ -167,12 +225,11 @@ getQuestionAnswers () {
             </ul>
         </div>
         )
-         })}
-                
+         })} 
            <img className={styles.correct} src={this.correctAnimation()}/>
-     
-
         </div>
+
+
         </div>
         )
         }
