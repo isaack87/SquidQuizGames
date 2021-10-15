@@ -1,0 +1,82 @@
+.body{
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    height: 1.8vh;
+    border: 1px black solid;
+    background-color: #505050;
+    border-radius: 15px;
+}
+
+
+.progress5rounds{
+    display: inline-block;
+    position: relative;
+    height: .7vh;
+    width: 70vw;
+}
+
+.progress5rounds .color{
+    position: absolute;
+    background-color: white;
+    width: 0px;
+    height: 2vh;
+    margin-top: -.8em;
+    border-radius: 5px;
+    animation: progres 150 infinite linear;  
+}
+
+
+
+
+
+.progress10rounds .color{
+    position: absolute;
+    background-color: white;
+    width: 0px;
+    height: 2vh;
+    margin-top: -.8em;
+    border-radius: 5px;
+    animation: progres 300s infinite linear;  
+}
+
+.progress10rounds{
+    display: inline-block;
+    position: relative;
+    height: .7vh;
+    width: 70vw;
+
+}
+
+
+.timerbar {
+    color: black;
+    margin-left: 46%;
+    font-size: 1.6em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hide {
+    display: none
+  }
+
+@keyframes progres{
+    0%{
+      width: 75%;
+    }
+    25%{
+        width: 75%;
+    }
+    50%{
+        width: 75%;
+    }
+    75%{
+        width: 75%;
+    }
+    100%{
+        width: 100%;
+    }
+}; 
+
+

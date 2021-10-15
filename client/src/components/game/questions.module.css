@@ -12,13 +12,7 @@
     flex-direction: column;
   }
 
-  .timerbar {
-    color: black;
-  }
-
-  .hide {
-    display: none
-  }
+ 
 
   .correct {
     max-width:25%;
@@ -30,7 +24,8 @@
   .question {
     margin-top: 25%;
     margin-bottom: 5%;
-    font-size: 1em;
+    font-size: .6em;
+    font-weight: bolder;
     position: relative;
     width: 100%;display: flex;
     text-align: center;
@@ -65,7 +60,7 @@
     display: block;
     outline: none;
     background-color: var(--light);
-    width: 300px;
+    width: 55%;
     margin-top: .5em !important;
     height: 50px;
     border-radius: 30px;

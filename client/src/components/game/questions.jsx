@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Link, Redirect} from "react-router-dom";
 import styles from './questions.module.css'
 import GameRulesUI from './gameRulesUI.jsx'
+import Timer from './timer.jsx'
+
 
 class Questions extends React.Component {
     constructor(props) {
@@ -180,6 +182,8 @@ getQuestionAnswers () {
                      getIntialQuestionsAPI={this.getIntialQuestionsAPI}
                      questionsLeft={this.state.questionsLeft}
             />
+        <Timer roundsSelected= {this.state.roundsSelected}
+               seconds={this.state.seconds}/>
 
         <div className={styles.flexcontainer}>   
          <span className={styles.question}>{this.state.questions[0]}</span>
@@ -198,9 +202,7 @@ getQuestionAnswers () {
             <ul>
                 <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][3]}> D. {e[this.state.count][3]} 🔺</button>
             </ul>
-            <p className={this.state.roundsSelected !== '' ? styles.timerbar : styles.hide}>Time Left: {this.state.seconds} Questions Left: {this.state.questionsLeft}.</p>
         </div>
-        
         )
          })} 
            <img className={styles.correct} src={this.correctAnimation()}/>
