@@ -23,9 +23,8 @@ class Questions extends React.Component {
             lost: false,
             won: false,
             loaded: false,
-            time: {}, 
-            seconds: 30,
-            timer: 0
+            questionsLeft: this.props.state.rounds,
+            seconds: 30 * this.props.state.rounds
 
         }
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
@@ -38,62 +37,39 @@ class Questions extends React.Component {
     }
 
  componentDidMount() {
-     this.getIntialQuestionsAPI()
-     let timeLeftVar = this.secondsToTime(this.state.seconds);
-     this.setState({ time: timeLeftVar });
-     this.startTimer()
+     if (this.state.roundsSelected !== "") {
+        this.getIntialQuestionsAPI()
+        this.startTimer()
+     } else { 
+        this.getIntialQuestionsAPI()
+     }
 }
 
 componentDidUpdate(){
     setTimeout(() => this.setState({correct: false}), 2000);
-
-    // when timer goes to zero you lose 1 life
-    // checks to see if life is 0 and set to lose condition
-    if(this.state.seconds ===0) {
-        if (this.state.lives.length === 1) {
+    if (this.state.seconds === 0 && this.state.roundsSelected !== '') {
             this.setState({
                 lost: true,
                 lostRedirect: "/lost"
             })
-        }
-        alert('Ran out of Time, Lose 1 Life, NEXT QUESTION!')
-        this.setState((prevState) => ({
-            seconds: 5,
-            lives: this.state.lives.slice(1),
-            answer: this.state.answer.slice(1),
-            questions: this.state.questions.slice(1),
-            round: prevState.round + 1,
-        }))
     }
   }
 
   //helper functions for countdown
-  secondsToTime(secs){
-    let divisor_for_minutes = secs % (60 * 60);
-    let divisor_for_seconds = divisor_for_minutes % 60;
-    let seconds = Math.ceil(divisor_for_seconds);
-
-    let obj = {
-      "s": seconds
-    };
-    return obj;
-  }
   startTimer() {
-    if (this.state.timer == 0 && this.state.seconds > 0) {
-      this.state.timer = setInterval(this.countDown, 1000);
+    if (this.state.seconds > 0) {
+      this.setState({
+          seconds: setInterval(this.countDown, 1000)
+      }) 
     }
+    this.countDown()
   }
   countDown() {
     // Remove one second, set state so a re-render happens.
     let seconds = this.state.seconds - 1;
     this.setState({
-      time: this.secondsToTime(seconds),
       seconds: seconds,
     });
-    // Check if we're at zero.
-    if (seconds == 0) { 
-      clearInterval(this.timer);
-    }
   }
 
     //gets intial questions on game load once
@@ -132,6 +108,7 @@ getQuestionAnswers () {
     const choices = []
 
     list.results.map(e => {
+        console.log(e.correct_answer)
         questions.push(e.question)
         answer.push(e.correct_answer)
         choices.push(this.shuffle(e.incorrect_answers.concat(e.correct_answer)))
@@ -153,7 +130,8 @@ getQuestionAnswers () {
             count: prevState.count + 1,
             round: prevState.round + 1,
             score: prevState.score + 1,
-            correct: true
+            correct: true,
+            questionsLeft: prevState.questionsLeft - 1
         }));
     } else {
         this.setState({
@@ -200,14 +178,11 @@ getQuestionAnswers () {
         <GameRulesUI data= {this.props.state}
                      info={this.state}
                      getIntialQuestionsAPI={this.getIntialQuestionsAPI}
-
+                     questionsLeft={this.state.questionsLeft}
             />
-        <div className={styles.flexcontainer}>
-         <ul className={styles.question}>
-          Time Left: {this.state.time.s}
-         <br/>
-         {this.state.questions[0]}
-         </ul>
+
+        <div className={styles.flexcontainer}>   
+         <span className={styles.question}>{this.state.questions[0]}</span>
         {this.state.choices.map(e => {
         return (
         <div>
@@ -223,7 +198,9 @@ getQuestionAnswers () {
             <ul>
                 <button className={styles.animation} onClick={this.playerChoice} value={e[this.state.count][3]}> D. {e[this.state.count][3]} 🔺</button>
             </ul>
+            <p className={this.state.roundsSelected !== '' ? styles.timerbar : styles.hide}>Time Left: {this.state.seconds} Questions Left: {this.state.questionsLeft}.</p>
         </div>
+        
         )
          })} 
            <img className={styles.correct} src={this.correctAnimation()}/>

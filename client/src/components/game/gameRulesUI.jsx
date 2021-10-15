@@ -14,7 +14,7 @@ const GameRulesUI = props => {
             <div className={styles.a}>Topic: {props.data.genre}</div>
             <div className={styles.b}>Lives left: {props.info.lives}</div>
             <div className={styles.c}>Score: {props.info.score}</div>
-            <div className={styles.c}>Rounds#: {props.info.round} out of {props.data.rounds}</div>
+            <div className={styles.c}>Questions Left: {props.questionsLeft}</div>
             <div className={styles.c}><a href="/">Reset Game</a></div>
         </div>
         )

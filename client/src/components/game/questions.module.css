@@ -12,6 +12,14 @@
     flex-direction: column;
   }
 
+  .timerbar {
+    color: black;
+  }
+
+  .hide {
+    display: none
+  }
+
   .correct {
     max-width:25%;
     height:auto;
