@@ -14,7 +14,7 @@ class Questions extends React.Component {
             questionList: '',
             questions: '',
             answer: '',
-            correct: true,
+            correct: false,
             choices: [],
             hintSelected: false,
             hintArray: [],
@@ -81,7 +81,8 @@ class Questions extends React.Component {
 }
 
 componentDidUpdate(){    
-    setTimeout(() => this.setState({correct: false}), 4000);
+    setTimeout(() => this.setState({correct: false}), 5000);
+
     if (this.state.seconds === 0 && this.state.roundsSelected !== '') {
             this.setState({
                 lost: true,
@@ -92,8 +93,9 @@ componentDidUpdate(){
 
   componentWillUnmount(){
     //shows correct image and goes away after timeout
-    setTimeout(() => this.setState({correct: false}), 2000);
-  }
+        setTimeout(() => this.setState({correct: false}), 5000);
+    }
+
 
  // helper function to remove 1 addtime when used
  skipQ() {
@@ -245,7 +247,7 @@ getQuestionAnswers () {
             count: prevState.count + 1,
             round: prevState.round + 1,
             score: prevState.score + 1,
-            correct: false,
+            correct: true,
             questionsLeft: prevState.questionsLeft - 1,
             hintSelected: false
         }))
