@@ -7,16 +7,16 @@ class SelectionBox extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            playerName: "",
-            difficulty: "",
-            rounds: "",
+            playerName: "isaac",
+            difficulty: "easy",
+            rounds: "5",
             genreID: "",
-            genre: "",
+            genre: "Random",
             choice: "Pick a Selection",
-            difficultySelected: false,
-            roundsSelected: false,
-            genreSelected: false,
-            playerPicked: false,
+            difficultySelected: true,
+            roundsSelected: true,
+            genreSelected: true,
+            playerPicked: true,
             hover: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -73,16 +73,15 @@ class SelectionBox extends React.Component {
     render () {
         return (
         <div className="fullscreenbox startbg">
-            <div className='registerbox bodySelection'>
+            <div className='registerbox bodySelection' onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
             <h1 className={this.state.playerPicked === false ?  'gametitle rainbow' : 'hide' }> Player Registration </h1>
-        <div className={this.state.playerPicked === true ?  'shownamepicked rainbow'  : 'hide' }> Welcome Player {this.state.playerName}</div>
+        <div className={this.state.playerPicked === true ?  'shownamepicked rainbow'  : 'hide' }> Welcome ➜ {this.state.playerName}</div>
         <div className={this.state.playerPicked === true ? 'hidemargin hide' : 'showname' }>
         <form>
         <input type="text" className="barlength signnamebar rainbow" placeholder="Enter Name Here .." onChange={this.handleChange}/>
         <button value={this.state.playerName} onClick={this.handleSubmit} className="lockin rainbow"> submit </button>
         </form>
          </div>
-
 
     <div id="menu">
         <ul className="containerMenu">
@@ -111,6 +110,11 @@ class SelectionBox extends React.Component {
         </li>
     </ul>
 </div>
+</div>
+
+{/* //start card  */}
+
+<div className={this.state.hover ? "hide" : "startbox"}> </div>
 
 <div className="button_container">
 <Link
@@ -131,7 +135,7 @@ className={this.state.difficultySelected  && this.state.playerPicked && this.sta
 </Link>
 </div>
 </div>
-</div>
+
         );
     }
 }

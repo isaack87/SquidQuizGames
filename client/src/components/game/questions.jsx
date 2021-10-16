@@ -16,10 +16,13 @@ class Questions extends React.Component {
             answer: '',
             correct: false,
             choices: [],
+            hintSelected: false,
+            hintArray: [],
             count: 0,
             lives: ['💖','💖','💖'],
+            hints: ['🔮','🔮'],
             score: 0,
-            round: 1,
+            round: 0,
             roundsSelected: this.props.state.rounds,
             shuffled: [],
             lost: false,
@@ -38,10 +41,10 @@ class Questions extends React.Component {
     this.countDown = this.countDown.bind(this);
     this.encode64 = this.encode64.bind(this);
     this.encode64Nested = this.encode64Nested.bind(this);
+    this.removeHint = this.removeHint.bind(this);
     }
 
  componentDidMount() {
-
     if (this.state.roundsSelected === "50") {
         this.getIntialQuestionsAPI()
         this.startTimer()
@@ -49,7 +52,6 @@ class Questions extends React.Component {
             seconds: 300,
             lives: ['💖','💖','💖','💖','💖']
         })
-
      }
      if (this.state.roundsSelected === "5") {
         this.getIntialQuestionsAPI()
@@ -58,7 +60,6 @@ class Questions extends React.Component {
             seconds: 30 * this.props.state.rounds,
             lives: ['💖','💖','💖']
         })
-
      }
      if (this.state.roundsSelected === "10") {
         this.getIntialQuestionsAPI()
@@ -67,7 +68,6 @@ class Questions extends React.Component {
             seconds: 30 * this.props.state.rounds,
             lives: ['💖','💖','💖','💖','💖']
         })
-
      }
 }
 
@@ -79,6 +79,29 @@ componentDidUpdate(){
                 lostRedirect: "/lost"
             })
     }
+  }
+
+  // helper function to remove 1 hunt when used
+  removeHint() {
+
+    let hintArray = []
+    for (let i =0; i < this.state.choices.length; i++) {
+        if (this.state.choices[0][this.state.round].includes(this.state.answer[0])) {
+            let test = this.state.choices[0][this.state.round]
+
+            test.forEach(e => {
+                if (e !== this.state.answer[0]) {
+                    hintArray.push(e)
+                }
+            })
+        }
+    }
+
+    this.setState({
+        hints: this.state.hints.slice(1),
+        hintSelected: true,
+        hintArray: hintArray.slice(0,2)
+    })
   }
 
   //helper functions for countdown
@@ -164,18 +187,18 @@ getQuestionAnswers () {
     const questions = []
     const answer = []
     const choices = []
+
     list.results.map(e => {
         questions.push(e.question)
         answer.push(e.correct_answer)
         choices.push(this.shuffle(e.incorrect_answers.concat(e.correct_answer)))
     })
+
         this.setState({
             questions: this.encode64(questions),
             answer: this.encode64(answer),
             choices: [this.encode64Nested(choices)]
         })
-        //remove this shows answers, testing purpose
-        console.log('master answers', this.encode64(answer))
 }
 
   //validates player choice if right or wrong
@@ -189,7 +212,8 @@ getQuestionAnswers () {
             round: prevState.round + 1,
             score: prevState.score + 1,
             correct: true,
-            questionsLeft: prevState.questionsLeft - 1
+            questionsLeft: prevState.questionsLeft - 1,
+            hintSelected: false
         }));
     } else {
         this.setState({
@@ -243,9 +267,17 @@ getQuestionAnswers () {
 
         <div className={styles.flexcontainer}>
          <span className={styles.question}>{this.state.questions[0]}</span>
+
+
         {this.state.choices.map(e => {
         return (
         <div>
+
+            <h1 className={this.state.hintSelected ? styles.showhint : styles.hidehint }>
+                Hint Answer is not :{this.state.hintArray[0]} or {this.state.hintArray[1]}
+            </h1>
+
+            < button onClick={this.removeHint}> 50 50 here </button>
             <ul>
                 <button className={styles.animation}  onClick={this.playerChoice} value={e[this.state.count][0]}> A. {e[this.state.count][0]} ☂️</button>
             </ul>
