@@ -13,17 +13,20 @@ class SelectionBox extends React.Component {
             genreID: "",
             genre: "Random",
             choice: "Pick a Selection",
-            difficultySelected: true,
-            roundsSelected: true,
-            genreSelected: true,
-            playerPicked: true,
-            hover: false
+            difficultySelected: false,
+            roundsSelected: false,
+            genreSelected: false,
+            playerPicked: false,
+            hover: false,
+            allChoicesMade: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onChangeGenre = this.onChangeGenre.bind(this)
-    }
 
+    }   
+
+  
          onChangePlayerName(e) {
             this.setState({
                 playerName: e
@@ -69,13 +72,13 @@ class SelectionBox extends React.Component {
             e.preventDefault();
             this.setState({playerName: e.target.value, playerPicked: true});
         }
-
+  
     render () {
         return (
         <div className="fullscreenbox startbg">
             <div className='registerbox bodySelection' onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
             <h1 className={this.state.playerPicked === false ?  'gametitle rainbow' : 'hide' }> Player Registration </h1>
-        <div className={this.state.playerPicked === true ?  'shownamepicked rainbow'  : 'hide' }> Welcome ➜ {this.state.playerName}</div>
+        <div className={this.state.playerPicked === true ?  'shownamepicked rainbow'  : 'hide' }> Welcome  {this.state.playerName}</div>
         <div className={this.state.playerPicked === true ? 'hidemargin hide' : 'showname' }>
         <form>
         <input type="text" className="barlength signnamebar rainbow" placeholder="Enter Name Here .." onChange={this.handleChange}/>
@@ -130,7 +133,8 @@ to={
           }
     }
 }
-className={this.state.difficultySelected  && this.state.playerPicked && this.state.roundsSelected ? 'btn' : 'hide' }
+
+className={this.state.difficultySelected  && this.state.playerPicked && this.state.roundsSelected && this.state.genreSelected ? 'btn' : 'hide' }
 ><span>Enter Game {this.state.playerName} </span>
 </Link>
 </div>

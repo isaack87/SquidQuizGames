@@ -107,12 +107,17 @@ componentDidUpdate(){
   // helper function to remove 1 hint when used
   removeHint() {
     if (this.state.hints.length > 0) {
+    let temp = []
+    //this array contains the correct answer along with 1 incorret
     let hintArray = []
+
     for (let i =0; i < this.state.choices.length; i++) {
         if (this.state.choices[0][this.state.round].includes(this.state.answer[0])) {
             let test = this.state.choices[0][this.state.round]
             test.forEach(e => {
                 if (e !== this.state.answer[0]) {
+                    temp.push(e)
+                } else {
                     hintArray.push(e)
                 }
             })
@@ -121,7 +126,7 @@ componentDidUpdate(){
     this.setState({
         hints: this.state.hints.slice(1),
         hintSelected: true,
-        hintArray: hintArray.slice(0,2)
+        hintArray: hintArray.concat(temp[0])
     })
     } else {
         alert(' You are out of hints')
@@ -299,12 +304,13 @@ getQuestionAnswers () {
          <span className={styles.question}>{this.state.questions[0]}</span>
 
 
+
+
         {this.state.choices.map(e => {
         return (
         <div>
-
             <h1 className={this.state.hintSelected ? styles.showhint : styles.hidehint }>
-                Hint Answer is not :{this.state.hintArray[0]} or {this.state.hintArray[1]}
+                Answer is- <b>{this.state.hintArray[0]} or {this.state.hintArray[1]}</b>
             </h1>
             <ul>
                 <button className={styles.animation}  onClick={this.playerChoice} value={e[this.state.count][0]}> A. {e[this.state.count][0]} ☂️</button>
@@ -321,10 +327,7 @@ getQuestionAnswers () {
         </div>
         )
          })}
-         
         </div>
-
-
         </div>
         )
         }

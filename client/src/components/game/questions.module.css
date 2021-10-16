@@ -23,6 +23,15 @@
 
 .showhint {
   display: flex;
+  color: white;
+  font-size: .8em;
+  margin-bottom: 2% !important;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  background-color:#505050;
+  box-shadow: 5px 10px;
+  width: 50%;
 }
 
 .hidehint {
@@ -30,8 +39,9 @@
 }
 
   .question {
-    margin-top: 25%;
-    margin-bottom: 5%;
+    margin-top: 33%;
+    margin-bottom: 3%;
+    line-height: 1;
     font-size: 1em;
     font-weight: bolder;
     position: relative;

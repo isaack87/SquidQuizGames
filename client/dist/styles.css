@@ -57,7 +57,7 @@ Selection Main Box
     position: relative ;
     border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%  ;
     box-shadow: 20px 20px rgba(0,0,0,.15);
-    transition: all 2s ease  ;
+    transition: all 1s ease  ;
   }
 
   .registerbox:hover {
@@ -208,6 +208,7 @@ Show Hide Boxes
 
 .hide {
     display: none
+    
 }
 
 .hidemargin {
