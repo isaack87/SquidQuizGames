@@ -39,13 +39,14 @@
 }
 
   .question {
-    margin-top: 33%;
-    margin-bottom: 3%;
+    margin-top: -3% !important;
+    margin-bottom: 3% !important;
     line-height: 1;
     font-size: 1em;
     font-weight: bolder;
     position: relative;
-    width: 100%;display: flex;
+    width: 100%;
+    display: flex;
     text-align: center;
     justify-content: center;
   }
@@ -125,3 +126,38 @@
     position: relative;
     right: 0;
   }
+
+
+.correctimg {
+  display: relative;
+  margin-top: 25% !important;
+  max-width:25%;
+    height:auto;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .fade-in {
+    transition: opacity 1s ease;
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
+}

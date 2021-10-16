@@ -13,12 +13,12 @@ class SelectionBox extends React.Component {
             genreID: "",
             genre: "Random",
             choice: "Pick a Selection",
-            difficultySelected: false,
-            roundsSelected: false,
-            genreSelected: false,
-            playerPicked: false,
-            hover: false,
-            allChoicesMade: false
+            difficultySelected: true,
+            roundsSelected: true,
+            genreSelected: true,
+            playerPicked: true,
+            hover: true,
+            allChoicesMade: true
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)

@@ -14,7 +14,7 @@ class Questions extends React.Component {
             questionList: '',
             questions: '',
             answer: '',
-            correct: false,
+            correct: true,
             choices: [],
             hintSelected: false,
             hintArray: [],
@@ -31,7 +31,6 @@ class Questions extends React.Component {
             loaded: false,
             questionsLeft: this.props.state.rounds,
             seconds: 1
-
         }
     this.getQuestionAnswers = this.getQuestionAnswers.bind(this)
     this.shuffle = this.shuffle.bind(this)
@@ -77,16 +76,23 @@ class Questions extends React.Component {
             skipQ: ['❓','❓','❓']
         })
      }
+
+    
 }
 
-componentDidUpdate(){
-    setTimeout(() => this.setState({correct: false}), 2000);
+componentDidUpdate(){    
+    setTimeout(() => this.setState({correct: false}), 4000);
     if (this.state.seconds === 0 && this.state.roundsSelected !== '') {
             this.setState({
                 lost: true,
                 lostRedirect: "/lost"
             })
     }
+  }
+
+  componentWillUnmount(){
+    //shows correct image and goes away after timeout
+    setTimeout(() => this.setState({correct: false}), 2000);
   }
 
  // helper function to remove 1 addtime when used
@@ -181,7 +187,6 @@ shuffle(array) {
     return array;
   }
 
-
   //takes a  array of strings and converts encode64 to text
   encode64 (array) {
         var Buffer = require('buffer').Buffer
@@ -210,7 +215,6 @@ shuffle(array) {
     return finalArray
 }
 
-
 // grabs API data and structures question, answer
 getQuestionAnswers () {
     const list = this.state.questionList;
@@ -223,7 +227,6 @@ getQuestionAnswers () {
         answer.push(e.correct_answer)
         choices.push(this.shuffle(e.incorrect_answers.concat(e.correct_answer)))
     })
-
         this.setState({
             questions: this.encode64(questions),
             answer: this.encode64(answer),
@@ -235,6 +238,7 @@ getQuestionAnswers () {
   playerChoice(e) {
     e.preventDefault();
     if (e.target.value === this.state.answer[0]) {
+        this.correctAnimation()
         this.setState((prevState) => ({
             answer: this.state.answer.slice(1),
             questions: this.state.questions.slice(1),
@@ -244,7 +248,7 @@ getQuestionAnswers () {
             correct: true,
             questionsLeft: prevState.questionsLeft - 1,
             hintSelected: false
-        }));
+        }))
     } else {
         this.setState({
             lives: this.state.lives.slice(1)
@@ -269,7 +273,7 @@ getQuestionAnswers () {
   correctAnimation() {
     let imageURL = '';
     if (this.state.correct === true) {
-        imageURL = "https://media1.giphy.com/media/UXgf6pu1LlQp6CPDi0/giphy.gif?cid=ecf05e47p1qyq9h6zrtijex1inknhzpdlul8m1gib53favd1&rid=giphy.gif&ct=g";
+        imageURL = "https://c.tenor.com/ZoZqWaSnN5UAAAAi/diwali-sparkles-stars.gif";
     } else {
         imageURL = "";
         }
@@ -297,13 +301,14 @@ getQuestionAnswers () {
                hint={this.removeHint}
                skipQ={this.skipQ}/>
                
-
+    
         <div className={styles.flexcontainer}>
+            {/* Animation fireworks if answer correct */}
+        <img className={styles.correctimg} src={this.state.correct === true ? this.correctAnimation() : null}/>
 
             {/* QUESTION TITLE HERE */}
          <span className={styles.question}>{this.state.questions[0]}</span>
-
-
+       
 
 
         {this.state.choices.map(e => {
