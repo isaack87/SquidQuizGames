@@ -21,6 +21,7 @@ class Questions extends React.Component {
             count: 0,
             lives: ['💖','💖','💖'],
             hints: ['🔮','🔮'],
+            skipQ: ['❓','❓'],
             score: 0,
             round: 0,
             roundsSelected: this.props.state.rounds,
@@ -42,6 +43,7 @@ class Questions extends React.Component {
     this.encode64 = this.encode64.bind(this);
     this.encode64Nested = this.encode64Nested.bind(this);
     this.removeHint = this.removeHint.bind(this);
+    this.skipQ = this.skipQ.bind(this)
     }
 
  componentDidMount() {
@@ -50,7 +52,9 @@ class Questions extends React.Component {
         this.startTimer()
         this.setState({
             seconds: 300,
-            lives: ['💖','💖','💖','💖','💖']
+            lives: ['💖','💖','💖','💖','💖'],
+            hints: ['🔮','🔮','🔮','🔮'],
+            skipQ: ['❓','❓','❓','❓']
         })
      }
      if (this.state.roundsSelected === "5") {
@@ -58,7 +62,9 @@ class Questions extends React.Component {
         this.startTimer()
         this.setState({
             seconds: 30 * this.props.state.rounds,
-            lives: ['💖','💖','💖']
+            lives: ['💖','💖','💖'],
+            hints: ['🔮','🔮'],
+            skipQ: ['❓','❓']
         })
      }
      if (this.state.roundsSelected === "10") {
@@ -66,7 +72,9 @@ class Questions extends React.Component {
         this.startTimer()
         this.setState({
             seconds: 30 * this.props.state.rounds,
-            lives: ['💖','💖','💖','💖','💖']
+            lives: ['💖','💖','💖','💖'],
+            hints: ['🔮','🔮','🔮'],
+            skipQ: ['❓','❓','❓']
         })
      }
 }
@@ -81,14 +89,28 @@ componentDidUpdate(){
     }
   }
 
-  // helper function to remove 1 hunt when used
+ // helper function to remove 1 addtime when used
+ skipQ() {
+    if (this.state.skipQ.length > 0) {
+        this.setState((prevState) => ({
+            skipQ: this.state.skipQ.slice(1),
+            answer: this.state.answer.slice(1),
+            questions: this.state.questions.slice(1),
+            count: prevState.count + 1,
+            round: prevState.round + 1
+        }));
+    } else {
+        alert(' you are out of question skips')
+    }
+  }
+  
+  // helper function to remove 1 hint when used
   removeHint() {
-
+    if (this.state.hints.length > 0) {
     let hintArray = []
     for (let i =0; i < this.state.choices.length; i++) {
         if (this.state.choices[0][this.state.round].includes(this.state.answer[0])) {
             let test = this.state.choices[0][this.state.round]
-
             test.forEach(e => {
                 if (e !== this.state.answer[0]) {
                     hintArray.push(e)
@@ -96,13 +118,16 @@ componentDidUpdate(){
             })
         }
     }
-
     this.setState({
         hints: this.state.hints.slice(1),
         hintSelected: true,
         hintArray: hintArray.slice(0,2)
     })
+    } else {
+        alert(' You are out of hints')
+    }
   }
+
 
   //helper functions for countdown
   startTimer() {
@@ -263,9 +288,14 @@ getQuestionAnswers () {
                      questionsLeft={this.state.questionsLeft}
             />
         <Timer roundsSelected= {this.state.roundsSelected}
-               seconds={this.state.seconds}/>
+               seconds={this.state.seconds}
+               hint={this.removeHint}
+               skipQ={this.skipQ}/>
+               
 
         <div className={styles.flexcontainer}>
+
+            {/* QUESTION TITLE HERE */}
          <span className={styles.question}>{this.state.questions[0]}</span>
 
 
@@ -276,8 +306,6 @@ getQuestionAnswers () {
             <h1 className={this.state.hintSelected ? styles.showhint : styles.hidehint }>
                 Hint Answer is not :{this.state.hintArray[0]} or {this.state.hintArray[1]}
             </h1>
-
-            < button onClick={this.removeHint}> 50 50 here </button>
             <ul>
                 <button className={styles.animation}  onClick={this.playerChoice} value={e[this.state.count][0]}> A. {e[this.state.count][0]} ☂️</button>
             </ul>
@@ -293,7 +321,7 @@ getQuestionAnswers () {
         </div>
         )
          })}
-           <img className={styles.correct} src={this.correctAnimation()}/>
+         
         </div>
 
 

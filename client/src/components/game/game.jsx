@@ -13,10 +13,13 @@ class Game extends React.Component {
 
     render() {
         return (
+         <div>
+            <Timer />
             <div className={styles.bg}>
-             <Timer />
              <Questions state={this.state.current}/>
             </div>
+        </div>
+
         )
     }
 }

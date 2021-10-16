@@ -23,9 +23,13 @@ Selection Main Box
   .startbox {
     background-image: url('./assets/start.jpeg');
     object-fit: contain;
+    background-repeat: no-repeat;
     width: 22%;
     height: 25%;
     display: flex;
+    flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
     align-items: center;
     justify-content: center;
     z-index: 10;
@@ -339,13 +343,16 @@ body {
 
 /* front page square,triangle, circle */
 .icon-chrome1:before {
-  content: "🔴";
+  /* content: "🔴"; */
+  content: url('./assets/circle1.png');
 }
 .icon-chrome2:before {
   content: "🔺";
+  content: url('./assets/triangle1.png');
 }
 .icon-chrome3:before {
   content: "🟥";
+  content: url('./assets/square1.png');
 }
 
 

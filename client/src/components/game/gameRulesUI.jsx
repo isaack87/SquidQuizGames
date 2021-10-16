@@ -12,7 +12,8 @@ const GameRulesUI = props => {
             <div className={styles.a}>Name: {props.data.playerName} #{random} </div>
             <div className={styles.a}>Difficulty: {props.data.difficulty}</div>
             <div className={styles.a}>Topic: {props.data.genre}</div>
-            <div className={styles.b}>50/50 Guess: {props.info.hints}</div>
+            <div className={styles.b}>Hint: {props.info.hints}</div>
+            <div className={styles.b}>Skip: {props.info.skipQ}</div>
             <div className={styles.b}>Lives left: {props.info.lives}</div>
             <div className={styles.c}>Score: {props.info.score}</div>
             <div className={styles.c}>Questions Left: {props.questionsLeft}</div>
