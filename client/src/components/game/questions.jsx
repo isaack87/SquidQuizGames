@@ -245,7 +245,7 @@ getQuestionAnswers () {
             count: prevState.count + 1,
             round: prevState.round + 1,
             score: prevState.score + 1,
-            correct: true,
+            correct: false,
             questionsLeft: prevState.questionsLeft - 1,
             hintSelected: false
         }))
