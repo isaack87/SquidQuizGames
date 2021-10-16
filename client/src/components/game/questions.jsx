@@ -24,6 +24,7 @@ class Questions extends React.Component {
             skipQ: ['❓','❓'],
             score: 0,
             round: 0,
+            correctAnswer: 1,
             roundsSelected: this.props.state.rounds,
             shuffled: [],
             lost: false,
@@ -77,10 +78,10 @@ class Questions extends React.Component {
         })
      }
 
-    
+
 }
 
-componentDidUpdate(){    
+componentDidUpdate(){
     setTimeout(() => this.setState({correct: false}), 5000);
 
     if (this.state.seconds === 0 && this.state.roundsSelected !== '') {
@@ -104,14 +105,15 @@ componentDidUpdate(){
             skipQ: this.state.skipQ.slice(1),
             answer: this.state.answer.slice(1),
             questions: this.state.questions.slice(1),
-            count: prevState.count + 1,
-            round: prevState.round + 1
+            count: this.state.count + 1,
+            round: this.state.round + 1,
+            hintSelected: false
         }));
     } else {
         alert(' you are out of question skips')
     }
   }
-  
+
   // helper function to remove 1 hint when used
   removeHint() {
     if (this.state.hints.length > 0) {
@@ -249,7 +251,8 @@ getQuestionAnswers () {
             score: prevState.score + 1,
             correct: true,
             questionsLeft: prevState.questionsLeft - 1,
-            hintSelected: false
+            hintSelected: false,
+            correctAnswer: this.state.correctAnswer+1
         }))
     } else {
         this.setState({
@@ -263,7 +266,7 @@ getQuestionAnswers () {
             lostRedirect: "/lost"
         })
     }
-    if (this.state.round == this.state.roundsSelected && this.state.round !== '') {
+    if (this.state.correctAnswer == this.state.roundsSelected && this.state.round !== '') {
         this.setState({
             won: true,
             wonRedirect: "/won"
@@ -302,15 +305,15 @@ getQuestionAnswers () {
                seconds={this.state.seconds}
                hint={this.removeHint}
                skipQ={this.skipQ}/>
-               
-    
+
+
         <div className={styles.flexcontainer}>
             {/* Animation fireworks if answer correct */}
         <img className={styles.correctimg} src={this.state.correct === true ? this.correctAnimation() : null}/>
 
             {/* QUESTION TITLE HERE */}
          <span className={styles.question}>{this.state.questions[0]}</span>
-       
+
 
 
         {this.state.choices.map(e => {
