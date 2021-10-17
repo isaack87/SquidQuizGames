@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 # SquidQuizGame - A brief description outlining what the project is**
@@ -50,3 +51,10 @@ Upcoming Features
 
 *This source code is licensed under the BSD-style license found in the*
 *LICENSE file in the root directory of this source tree.*
+=======
+# QuizGame
+Quiz Game!
+![Alt Text]('./client/dist/assets/Start.gif')
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+>>>>>>> 6080849837df33072147f186de657b76a0eef591
