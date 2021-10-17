@@ -2,7 +2,7 @@
 # SquidQuizGame 
 
 Inspired by the popular Netflix Show.
-This project is a quiz trivia game. Users will be able to select a category, difficulty & rounds to play round of trivia.
+MVP project, given 1 week to design, create, and implement a quiz game using ReactJS/NodeJS
 
 *Table of Contents*
 * Overview
