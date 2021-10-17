@@ -42,10 +42,11 @@ Upcoming Features
 * Store user stats such as questions, time, answers
 * Allow users to create and store their own categories/questions
 * CRUD routes
+* Add 5 more games to the pool
 
 *License - If open source, state how the project is licensed.*
 
-*Copyright (c) 2021, FEC Manchego*
+*Copyright (c) 2021, SquiaQuizGames*
 *All rights reserved.*
 
 
