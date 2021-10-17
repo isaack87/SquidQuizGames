@@ -9,7 +9,8 @@ This project is a quiz trivia game. Users will be able to select a category, dif
 * Demo
 * Roadmap
 * Installation
-* 
+
+
 ![Start Screen](https://github.com/isaack87/SquidQuizGames/blob/main/client/dist/assets/Start.gif)
 #
 ![Game Screen](https://github.com/isaack87/SquidQuizGames/blob/main/client/dist/assets/GameScreen.gif)
