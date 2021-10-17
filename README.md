@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 
-
-# SquidQuizGame - A brief description outlining what the project is**
+# SquidQuizGame 
 
 Inspired by the popular Netflix Show.
 This project is a quiz trivia game. Users will be able to select a category, difficulty & rounds to play round of trivia.
@@ -11,10 +9,10 @@ This project is a quiz trivia game. Users will be able to select a category, dif
 * Demo
 * Roadmap
 * Installation
-
-![Start Screen](client\dist\assets\Start.gif)
+* 
+![Start Screen](https://github.com/isaack87/SquidQuizGames/blob/main/client/dist/assets/Start.gif)
 #
-![Game Screen](client\dist\assets\GameScreen.gif)
+![Game Screen](https://github.com/isaack87/SquidQuizGames/blob/main/client/dist/assets/GameScreen.gif)
 
 
 ***Installation* - How can another developer get your project up and running on their own? What dependencies are required? Are there environmental requirements? Be specific, and outline steps to take in order to get the project running.**
@@ -49,12 +47,4 @@ Upcoming Features
 *Copyright (c) 2021, FEC Manchego*
 *All rights reserved.*
 
-*This source code is licensed under the BSD-style license found in the*
-*LICENSE file in the root directory of this source tree.*
-=======
-# QuizGame
-Quiz Game!
-![Alt Text]('./client/dist/assets/Start.gif')
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
->>>>>>> 6080849837df33072147f186de657b76a0eef591
